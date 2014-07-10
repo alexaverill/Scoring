@@ -34,11 +34,11 @@
             }else{
                 echo '<li><a href="events.php">Event Supervisor</a></li>';
             }
-            if(strpos($actual_link,'final')){
+            /*if(strpos($actual_link,'final')){
             echo '<li class="active"><a href="final.php">Final Scores</a></li>';
             }else{
                 echo '<li><a href="final.php">Final Scores</a></li>';
-            }
+            }*/
             ?>
           </ul>
         </div><!--/.nav-collapse -->
