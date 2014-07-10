@@ -14,7 +14,7 @@ $score = $_POST['score'];
     $updateRaw = $dbh->prepare($update);
     $updateRaw->execute(array($score,$place,1,$event,$school));
     //set completed to 1 in event table
-    $complete = "UPDATE events SET completed=? WHERE eventName=?";
+    $complete = "UPDATE events SET confirmed=? WHERE eventName=?";
     $setComplete = $dbh->prepare($complete);
     $setComplete->execute(array(1,$event));
     
