@@ -20,15 +20,15 @@ foreach($listEvents as $event){
 echo '<th>Final Score</th><th>Rank</th></tr>';
 $x=0;
 foreach($teams as $team){
-    $team = $team['teamNumber'].' '.$team['teamName'];
-    echo '<tr><td id="'.$x.'team">'.$team.'</td>';
+    $teamA = $team['teamNumber'].' '.$team['teamName'];
+    echo '<tr><td id="'.$x.'team">'.$teamA.'</td>';
     $score =0;
     foreach($listEvents as $event){
         $eventName = $event['eventName'];
         //echo '<td>'.$eventName.'</td>';
         $sql = "SELECT * FROM scores WHERE eventName=? AND teamName=?";
         $returnPlace = $dbh->prepare($sql);
-        $returnPlace->execute(array($eventName,$team));
+        $returnPlace->execute(array($eventName,$teamA));
         $returnPlace = $returnPlace->fetchAll();
         if($event['type']=='event'){ //only add to final score if not a trial.
               $score += $returnPlace[0]['confirmedPlace'];
@@ -36,7 +36,7 @@ foreach($teams as $team){
         echo '<td>'.$returnPlace[0]['confirmedPlace'].'</td>';
     }
     echo '<td id="'.$x.'score">'.$score.'</td>';
-    echo '<td id="'.$x.'rank"></td></tr>';
+    echo '<td id="'.$x.'rank">'.$team['rank'].'</td></tr>';
     $x++;
     }
     

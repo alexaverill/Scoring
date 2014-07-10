@@ -85,7 +85,7 @@ $numTeams = $display->number_teams($division);
 			function save_score_to_cell(scoreNum,schoolName,placeR,tierR) {
 			    $.ajax({
 					type: "POST",
-					url: "individualscores.php",
+					url: "bridges/individualscores.php",
 					data: { event: eventName, score: scoreNum,school:schoolName,place: placeR,tier: tierR }
 					})
 					.done(function( msg ) {
@@ -115,7 +115,7 @@ $numTeams = $display->number_teams($division);
 				//send raw scores across to be stored.
 				$.ajax({
 					type: "POST",
-					url: "save.php",
+					url: "bridges/save.php",
 					data: { event: eventName, scores: JSON.stringify(totalPlacement)  }
 					})
 					.done(function( msg ) {
@@ -408,7 +408,7 @@ $numTeams = $display->number_teams($division);
 				schoolName=document.getElementById(x).innerHTML;
 				 $.ajax({
 					type: "POST",
-					url: "finalSave.php",
+					url: "bridges/finalSave.php",
 					    data: { event: eventName, score: scoreNum,school:schoolName,place: placeR,tier: tierR, locked:"1" }
 				    })
 				    .done(function( msg ) {
