@@ -50,6 +50,13 @@ class user {
         }
         
     }
+    public function add_user($user,$password,$type,$permissions){
+	global $dbh;
+	$adding ="INSERT INTO users(name,password,type,permissions) VALUES(?,?,?,?)";
+	$add = $dbh->prepare($adding);
+	$password = password_hash($password,PASSWORD_DEFAULT);
+	$add->execute(array($user,$password,$type,$permissions));
+    }
 }
 class uploads{
     public function upload($name,$tmpName){						//Upload function for admin area excel files
@@ -105,6 +112,8 @@ class events{
         global $dbh;
         if($type==1){
             $sql = "SELECT * FROM events WHERE active=1 and division=? ORDER BY eventName ASC";
+        }else if($type==3){
+	    $sql = "SELECT * FROM events WHERE active=1 ORDER BY eventName ASC";
         }else{
             $sql = "SELECT * FROM events WHERE division=? ORDER BY eventName ASC";
         }

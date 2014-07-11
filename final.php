@@ -77,20 +77,23 @@ global $dbh;
                      ties = [];
                      startLocation = 0;
                      y=x;
-                            while(y<totalLength){
-                                   if (x+y < totalLength) {
-                                   
+                            while(y< totalLength){
+                                   if (y < totalLength-1) {
+					  console.log(y);
+					  console.log(totalLength);
                                           if (scores[y][2] == scores[y+1][2]) {
                                                  startLocation = y;
                                                len = ties.length;
                                                 if(ties[len-1] != scores[y][1]){
                                                  ties.push([]);
-                                                 ties[y][0]=scores[y][1];
-                                                 ties[y][2]=0;
+	      				  console.log(scores[y][2]);
+					  console.log(len);
+                                                 ties[len][0]=scores[y][1];
+                                                 ties[len][2]=0;
                                                 }
                                                  ties.push([]);
-                                                 ties[y+1][0]=scores[y+1][1];
-                                                 ties[y+1][2]=0;
+                                                 ties[len+1][0]=scores[y+1][1];
+                                                 ties[len+1][2]=0;
                                                
                                           }else{
                                                  break;
@@ -103,7 +106,7 @@ global $dbh;
                             
                      //loop and check ties based on array;
                      tied = false;
-                     //console.log(ties);
+                     console.log(ties);
                     if (ties.length>0) {
                             tied = true;
                     }
@@ -195,7 +198,7 @@ global $dbh;
                    for(p=0;p<ties.length;p++){
                      for (v=0;v<scores.length;v++) {
                             if (scores[v][1]==ties[p][0]) {
-                                   scores[v][3]=(startLocation+ties[p][4])-1;
+                                   scores[v][3]=(startLocation+ties[p][4]);
                             }
                      }
                    }
