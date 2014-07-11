@@ -420,6 +420,7 @@ $numTeams = $display->number_teams($division);
 						console.log(msg);
 				    });
 			    }
+			    delayedSave();
 			}
 			function supports_html5_storage() {
 				try {
@@ -428,7 +429,18 @@ $numTeams = $display->number_teams($division);
 				  return false;
 				}
 			}
+			function showSaved() {
+			    document.getElementById('saved').innerHTML = 'Event Has been Saved';
+			}
+			function removeSaved() {
+			     document.getElementById('saved').innerHTML = '';
+			}
+			var timeoutID;
 
+			function delayedSave() {
+			  timeoutID = window.setTimeout(showSaved, 500);
+			  timeoutID = window.setTimeout(removeSaved, 4000);
+			}
 			window.onload = function() {
 				//see if local storage has a scores array
 				/*if (localStorage.getItem(eventName)) {
@@ -463,8 +475,8 @@ $numTeams = $display->number_teams($division);
 	<body>
 		<h1>Score Counseling:</h1>
 		<h1><?php echo $eventName;?></h1>
-		<button onclick="localStorage.clear();location.reload();">Clear Data</button>
-		<h3>Display defualt sorting pattern, defined in the database per events.</h3>
+		<h2 id="saved"></h2>
+		
 		<table class="table table-striped table-bordered table-condensed table-hover">
 		    <form method="POST" action="">
 			<tr>
@@ -490,7 +502,7 @@ $numTeams = $display->number_teams($division);
 				//get data from the database now.
 				$sql = "SELECT * FROM scores WHERE eventName=? AND teamName=?";
 				$get = $dbh->prepare($sql);
-				echo $eventName;
+				
 				$name=  $data['teamNumber'].' '.$data['teamName'];
 				$get->execute(array($eventName,$name));
 				foreach($get->fetchAll() as $score){
