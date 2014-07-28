@@ -2,6 +2,10 @@
 include('header.php');
 $display = new display();
 $events = new events();
+if($_SESSION['type']!=1){
+    echo '<a href="login.php">Please Login</a>';
+    die();
+}
 $division = $_GET['division'];
 $teams = $display->return_teams($division);
 $numTeams = $display->number_teams($division);

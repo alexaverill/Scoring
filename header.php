@@ -5,6 +5,7 @@ try{
 }catch(PDOException $e){
     echo $e->getMessage();
 }
+session_start();
 include('classes.php');
 
 ?>
@@ -14,7 +15,8 @@ include('classes.php');
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="source/bootstrap/css/bootstrap-theme.min.css">
-
+<!-- Extra Themes -->
+<link rel="stylesheet" href="source/parts.css">
 <!-- Latest compiled and minified JavaScript -->
 <script src="source/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="source/jquery-2.1.1.min.js"></script>
@@ -64,3 +66,9 @@ $(function() {
   });
 });});
 </script>
+<?php
+/*if(!($_SESSION['loggedin'])){
+    echo '<a href="login.php">Please Login</a>';
+    //die();
+}*/
+?>

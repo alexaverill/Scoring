@@ -9,43 +9,32 @@ class user {
         global $VALID;
         try{
     
-            $sql='SELECT * FROM team WHERE username=?';
+            $sql='SELECT * FROM users WHERE name=?';
             $query_user=$dbh->prepare($sql);
-            $user=$VALID->sant_string($user);
             $query_user->execute(array($user));
 	    if($query_user->rowCount()>0){
 		$user_information= $query_user->fetchAll(PDO::FETCH_ASSOC);
-		$admin=false;
 	    }else{
-		$sql='SELECT * FROM members WHERE name=?';
-		$query_user=$dbh->prepare($sql);
-		$user=$VALID->sant_string($user);
-		$query_user->execute(array($user));
-		$user_information= $query_user->fetchAll(PDO::FETCH_ASSOC);
-		$admin=true;
+		//user not found
 	    }
             //print_r($user_information[0][id]);
         }catch(PDOException $ex){
             echo $ex->getMessage();
         }
         //Compare stored Password to input password
-        $stored_password=$user_information[0][password];
+        $stored_password=$user_information[0]['password'];
         if(password_verify($password,$stored_password)){
             //TODO:Log user login to file.
-            	$_SESSION['name']=$user; 
-		$_SESSION['install']=$install;
-		$_SESSION['id']=$this->get_id($user);
-		if(!$admin){
-		    $_SESSION['admin']=false;
-		}else{
-		    $_SESSION['admin']=true;
-		}
+            	$_SESSION['name']=$user;
+		$_SESSION['type']=$user_information[0]['type'];
+		$_SESSION['perms']=$user_information[0]['permissions'];
+		$_SESSION['loggedin']=true;
 		$_SESSION['user']=true;
                 echo '<META HTTP-EQUIV=Refresh CONTENT=".5; URL=index.php">';
                 echo '<h2>You have logged in!</h2>';
         }else{
-            $log=new Logging();
-	    $log->add_entry("INVALID LOGIN:", "$user attempted to login and failed");
+            //$log=new Logging();
+	    //$log->add_entry("INVALID LOGIN:", "$user attempted to login and failed");
             echo '<h2>Wrong Username or passord</h2>';
         }
         

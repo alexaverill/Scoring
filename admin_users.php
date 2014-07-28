@@ -1,6 +1,10 @@
 <?php
 include('header.php');
 include('nav.php');
+if($_SESSION['type']!=1){
+    echo '<a href="login.php">Please Login</a>';
+    die();
+}
 $user = new user;
 if($_POST['admin']){
     $user->add_user($_POST['adminName'],$_POST['adminPass'],1,999);

@@ -267,7 +267,9 @@ if($rankType=='high'){
 						placeInTie = finalPlacement[y][4];
 						save_score_to_cell(finalPlacement[y][1],name,placeInTie,placeValue,finalPlacement[y][2]);
 					}else{
+					    //in tie and not tie broken
 						tieDialoglocat = rowLocal +"tie";
+						row = 'R'+rowLocal;
 						 if (finalPlacement[y][4] == 0 ) {
 						    htmlString ='Place in Tie:<select name="'+rowLocal+'" id="'+rowLocal+'tieselect"class=ties><option></option>';
 						    for(v=1;v<=max;v++){
@@ -281,10 +283,11 @@ if($rankType=='high'){
 						    document.getElementById(tieDialoglocat).innerHTML =htmlString;
 						    document.getElementById(placeLocat).innerHTML = "tie";
 						    name = document.getElementById(finalPlacement[y][0]).innerHTML;
-						    
-						    save_score_to_cell(finalPlacement[y][1],name,0,tie,finalPlacement[y][2]);
+						    document.getElementById(row).className = 'red';
+ 						    save_score_to_cell(finalPlacement[y][1],name,0,tie,finalPlacement[y][2]);
 						    
 						}else{
+						    //Tie and tie broken.
 						    htmlString ='Place in Tie:<select name="'+rowLocal+'" id="'+rowLocal+'tieselect"class=ties><option><option>';
 						    for(v=1;v<=max;v++){
 							if (finalPlacement[y][4] == v) {
@@ -296,6 +299,7 @@ if($rankType=='high'){
 						    htmlString += '</select>'
 						    document.getElementById(tieDialoglocat).innerHTML =htmlString;
 						    //document.getElementById(tieDialoglocat).innerHTML = finalPlacement[y][4];
+						    
 						    tieScore = finalPlacement[y][1];
 						    tiePlace = 0;
 						    for (u=0; u<finalPlacement.length;u++) {
@@ -307,7 +311,7 @@ if($rankType=='high'){
 						    placeValue=parseInt(tiePlace) + parseInt(finalPlacement[y][4])
 						    document.getElementById(placeLocat).innerHTML = placeValue;
 						    name = document.getElementById(finalPlacement[y][0]).innerHTML;
-						    
+						    document.getElementById(row).className = 'blue';
 						    placeInTie = finalPlacement[y][4];
 						    save_score_to_cell(finalPlacement[y][1],name,placeInTie,placeValue,finalPlacement[y][2]);
 						}
@@ -503,7 +507,7 @@ if($rankType=='high'){
 		    <li>Tier 1 recieves more favorable rank</li>
 		</ul>
 		<div class="table-responsive">
-		<table  class="table table-striped table-bordered table-condensed table-hover">
+		<table  class="table table-bordered table-condensed">
 			<tr>
 				<th>School</th>
 				<th>Raw Score</th>

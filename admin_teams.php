@@ -1,6 +1,10 @@
 <?php
 include('header.php');
 include('nav.php');
+if($_SESSION['type']!=1){
+    echo '<a href="login.php">Please Login</a>';
+    die();
+}
 $display = new display;
 $events= new events;
 if($_POST['teams']){

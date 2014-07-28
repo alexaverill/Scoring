@@ -1,5 +1,5 @@
 <?php
-require('database.php');
+require('../database.php');
 try{
     $dbh= new PDO('mysql:host='.$data_host.';dbname='.$name_database,$data_username,$data_password);
 }catch(PDOException $e){

@@ -13,7 +13,27 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <?php
-            //quick hack to fix it for a demo, going to be tied into each user, and will be much cleaner.
+            //lets do event Supervisors first
+            if($_SESSION['loggedin']){
+                if($_SESSION['type']==3 || $_SESSION['type'] ==2){
+                   echo '<li class="active"><a href="index.php">Main Page</a></li>
+                   <li ><a href="logout.php">Logout</a></li>
+                   ';
+                }
+                if($_SESSION['type']==1){
+                  echo '
+                    <li class="active"><a href="index.php">Main Page</a></li>
+                    <li ><a href="admin_events.php">Events</a></li>
+                    <li ><a href="admin_teams.php">Teams</a></li>
+                    <li ><a href="final.php?division=B">Confirm B</a></li>
+                    <li ><a href="final.php?division=C">Confirm C</a></li>
+                    <li ><a href="logout.php">Logout</a></li>
+                  ';
+                }
+            }else{
+               echo '<li class="active"><a href="login.php">Please Login</a></li>';
+            }
+            /*//quick hack to fix it for a demo, going to be tied into each user, and will be much cleaner.
             if(strpos($actual_link,'index')){
                 echo '<li class="active"><a href="index.php">Main Page</a></li>';
             }else{
