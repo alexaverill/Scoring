@@ -29,7 +29,7 @@
                    }
                    if(strpos($actual_link,'admin_events.php')){
                       echo ' <li class="active"><a href="admin_events.php">Events</a></li>';
-                    }
+                    }else{
                        echo '<li ><a href="admin_events.php">Events</a></li>';
                     }
                     if(strpos($actual_link,'admin_teams.php')){
@@ -48,8 +48,8 @@
                    echo ' <li ><a href="final.php?division=C">Confirm C</a></li>';
                     }
                     echo '<li ><a href="logout.php">Logout</a></li>';
-                  
-                }
+                } 
+                
             }else{
                echo '<li class="active"><a href="login.php">Please Login</a></li>';
             }
