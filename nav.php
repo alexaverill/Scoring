@@ -21,13 +21,33 @@
                    ';
                 }
                 if($_SESSION['type']==1){
-                  echo '
-                    <li class="active"><a href="index.php">Main Page</a></li>
-                    <li ><a href="admin_events.php">Events</a></li>
-                    <li ><a href="admin_teams.php">Teams</a></li>
-                    <li ><a href="final.php?division=B">Confirm B</a></li>
-                    <li ><a href="final.php?division=C">Confirm C</a></li>
-                    <li ><a href="logout.php">Logout</a></li>
+                  
+                   if(strpos($actual_link,'index')){
+                    echo '<li class="active"><a href="index.php">Main Page</a></li>';
+                   }else{
+                      echo '<li ><a href="index.php">Main Page</a></li>';
+                   }
+                   if(strpos($actual_link,'admin_events.php')){
+                      echo ' <li class="active"><a href="admin_events.php">Events</a></li>';
+                    }
+                       echo '<li ><a href="admin_events.php">Events</a></li>';
+                    }
+                    if(strpos($actual_link,'admin_teams.php')){
+                    echo ' <li class="active"><a href="admin_teams.php">Teams</a></li>';
+                    }else{
+                    echo '<li ><a href="admin_teams.php">Teams</a></li>';
+                    }
+                     if(strpos($actual_link,'final.php?division=B')){
+                    echo ' <li class="active"><a href="final.php?division=B">Confirm B</a></li>';
+                     }else{
+                    echo '<li ><a href="final.php?division=B">Confirm B</a></li>';
+                    }
+                     if(strpos($actual_link,'final.php?division=C')){
+                    echo ' <li class="active"><a href="final.php?division=C">Confirm C</a></li>';
+                     }else{
+                   echo ' <li ><a href="final.php?division=C">Confirm C</a></li>';
+                    }
+                    echo '<li ><a href="logout.php">Logout</a></li>';
                   ';
                 }
             }else{
