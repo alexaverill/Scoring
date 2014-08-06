@@ -292,14 +292,19 @@ class display{
                 $eventSup = 'Not Yet Submitted';
             }
             if($event['confirmed']==1){
-                $sc = 'Score Counsler has confirmed';
+                $sc = 'Score Counseler has confirmed';
             }else{
                 $sc = 'Not Yet Confirmed';
             }
+	    if($event['type']=='event'){
+		$type = 'Official Event';
+	    }else{
+		$type ='Trial Event';
+	    }
             echo '<tr><td><label><input type="checkbox" value="'.$event['eventName'].'" name="setActive[]"/>'
             .'<div style="display:inline" class="edit_event" id="'.$event['eventName'].'">'.$event['eventName'].'</div>'.
             '</label></td><td>'.$active.'</td><td><div style="display:inline" class="edit_div" id="'.$event['eventName'].'">'
-            .$event['division'].'<td>'.$event['type'].'</td><td>'.$scoring.'</td><td>'.$eventSup.'</td><td>'.$sc.'</td>'.
+            .$event['division'].'<td>'.$type.'</td><td>'.$scoring.'</td><td>'.$eventSup.'</td><td>'.$sc.'</td>'.
             
             '</tr>';
         }
