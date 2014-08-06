@@ -27,6 +27,11 @@
                    }else{
                       echo '<li ><a href="index.php">Main Page</a></li>';
                    }
+                   if(strpos($actual_link,'index')){ //change to users
+                    echo '<li class="active"><a href="index.php">Main Page</a></li>';
+                   }else{
+                      echo '<li ><a href="index.php">Main Page</a></li>';
+                   }
                    if(strpos($actual_link,'admin_events.php')){
                       echo ' <li class="active"><a href="admin_events.php">Events</a></li>';
                     }else{

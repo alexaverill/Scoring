@@ -35,7 +35,7 @@ $display->admin_events('B');
 <?php
 $display->admin_events('C');
 ?>
-<input type="submit" name="activate" value="Activate"/><input type="submit" name="deactivate" value="Deactivate"/>
+<input type="submit" name="activate" value="Being Run"/><input type="submit" name="deactivate" value="Not Being Run"/>
 </form>
 <br/>
 <h2>Add Events</h2>
