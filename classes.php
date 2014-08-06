@@ -80,7 +80,7 @@ class uploads{
 		if ($num_rows > 0) {
 			echo "Sorry, the team ".$teamName." is already in use. Please please use another team name<br>";
 		}else{
-		    $sql = "INSERT INTO teams (teamName,teamNumber,division) VALUES (?,?,?,?)";
+		    $sql = "INSERT INTO teams (teamName,teamNumber,division) VALUES (?,?,?)";
 		    $add=$dbh->prepare($sql);
 		    $add->execute(array($teamName,$teamNumber,$division));
 		}
