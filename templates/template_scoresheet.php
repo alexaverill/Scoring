@@ -265,6 +265,7 @@ if($rankType=='high'){
 						document.getElementById(tieDialoglocat).innerHTML = "";
 						document.getElementById(placeLocat).innerHTML = placeValue;
 						placeInTie = finalPlacement[y][4];
+						document.getElementById(row).className = 'normal';
 						save_score_to_cell(finalPlacement[y][1],name,placeInTie,placeValue,finalPlacement[y][2]);
 					}else{
 					    //in tie and not tie broken
