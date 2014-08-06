@@ -46,7 +46,7 @@ $display->admin_events('C');
 <h2>Add Events</h2>
 <form method="POST" actio="">
     Event Name:<input type="text" name="event_name"/>
-    <br/>Event Type:<select name="type"><option></option><option value="event">Normal Event</option><option value="trial">Trial Event</option></select>
+    <br/>Event Type:<select name="type"><option value="event" selected=selected>Official Event</option><option value="trial">Trial Event</option></select>
     <br/> Division: <select name="division"><option></option><option value="B">B</option><option value="C">C</option></select>
     <br/> Scoring Method: <select name="method"><option></option><option value="high">High Score Wins</option><option value="low">Low Score Wins</option></select>
     <br/><input type="submit" name="add" value="Add Event"/>
