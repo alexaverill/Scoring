@@ -26,11 +26,12 @@ if($_POST['unlock']){
 ?>
 <h1>Events</h1>
 <h2> Current Events</h2>
+<ul>
+<li>Click on the event name to edit.</li>
+<li>Event being run will show up for event supervisors to add scores.</li></ul>
 <form method="POST" action="">
     <h4>B Events</h4>
-<p><ul>
-<li>Click on the event name to edit.</li>
-<li>Event being run will show up for event supervisors to add scores.</li></ul></p>
+
 <?php
 $display->admin_events('B');
 ?>
