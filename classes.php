@@ -84,7 +84,7 @@ class uploads{
 		    $add=$dbh->prepare($sql);
 		    $add->execute(array($teamName,$teamNumber,$division));
 		}
-		//unlink($location);
+		unlink($location);
 		echo 'Your file has been input into the database. Thank you.';
 	}
 	}
