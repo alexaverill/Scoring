@@ -44,7 +44,7 @@ $display->admin_events('C');
 </form>
 <br/>
 <h2>Add Events</h2>
-<form method="POST" actio="">
+<form method="POST" action="" class="form-horizontal" role="form">
     Event Name:<input type="text" name="event_name"/>
     <br/>Event Type:<select name="type"><option value="event" selected=selected>Official Event</option><option value="trial">Trial Event</option></select>
     <br/> Division: <select name="division"><option></option><option value="B">B</option><option value="C">C</option></select>
