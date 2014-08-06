@@ -49,5 +49,5 @@ $display->admin_events('C');
     <br/>Event Type:<select class="form-control col-xs-3" name="type"><option value="event" selected=selected>Official Event</option><option value="trial">Trial Event</option></select>
     <br/> Division: <select class="form-control col-xs-3" name="division"><option></option><option value="B">B</option><option value="C">C</option></select>
     <br/> Scoring Method: <select class="form-control col-xs-3" name="method"><option></option><option value="high">High Score Wins</option><option value="low">Low Score Wins</option></select>
-    <br/><input class="btn btn-primary col-xs-3" type="submit" name="add" value="Add Event"/>
+    <br/><input class="btn btn-primary" type="submit" name="add" value="Add Event"/>
 </form>
