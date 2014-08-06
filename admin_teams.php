@@ -10,6 +10,10 @@ $events= new events;
 if($_POST['teams']){
    $display->add_teams($_POST['teamName'],$_POST['teamNumber'],$_POST['div']);
 }
+if($_POST['up']){
+   $up = new uploads;
+    $up->upload($_FILES['uploadedfile']['name'],$_FILES['uploadedfile']['tmp_name']);
+}
 ?>
 <h1>Teams</h1> 
 <form method="POST" action="">
