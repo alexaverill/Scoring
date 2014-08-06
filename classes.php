@@ -292,7 +292,7 @@ class display{
                 $eventSup = 'Not Yet Submitted';
             }
             if($event['confirmed']==1){
-                $sc = 'Score Counseler has confirmed';
+                $sc = 'Score Counselor has confirmed';
             }else{
                 $sc = 'Not Yet Confirmed';
             }
