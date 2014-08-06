@@ -259,12 +259,14 @@ if($rankType=='high'){
 					placeLocat = rowLocal+"place";
 					
 					if (!tie) {
+					    
 						tieDialoglocat = rowLocal +"tie";
 						name = document.getElementById(finalPlacement[y][0]).innerHTML;
 						//console.log(name);
 						document.getElementById(tieDialoglocat).innerHTML = "";
 						document.getElementById(placeLocat).innerHTML = placeValue;
 						placeInTie = finalPlacement[y][4];
+						row = 'R'+rowLocal;
 						document.getElementById(row).className = 'normal';
 						save_score_to_cell(finalPlacement[y][1],name,placeInTie,placeValue,finalPlacement[y][2]);
 					}else{
