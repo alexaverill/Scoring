@@ -25,6 +25,9 @@ if($_POST['teams']){
             <input type="submit" name="up" value="Upload File" />
         </form>
 <h3>Current Teams</h3>
+<ul>
+   <li>Click to edit</li>
+</ul>
 <?php
     $display->table_of_teams();
 ?>
