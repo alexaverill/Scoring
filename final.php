@@ -240,6 +240,10 @@ global $dbh;
        <body>
               <?php include('nav.php');?>
               <h1>Confirm Scores</h1>
+	      <ul>
+		     <li>Score will only appear once the Score Counselor has approved them.</li>
+		     <li><a href="admin_events.php">Check the event page for status</a></li>
+	      </ul>
               <?php
 echo '<table class="table table-striped table-bordered table-condensed table-hover"><tr><th>Teams:</th>';
 foreach($listEvents as $event){
