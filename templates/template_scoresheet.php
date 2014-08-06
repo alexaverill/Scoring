@@ -500,11 +500,12 @@ if($rankType=='high'){
 		<h2 id="locked"></h2>
 		<h2 id="saved"></h2>
 		
-		<h3>Event Supervisors, enter your scores, they will be saved automattically. Once ALL of your scores are in hit save and submit, then report to score counciling</h3>
+		<h3>Event Supervisors, enter your scores, they will be saved automatically.
+		Once ALL of your scores are in hit save and submit, then report to score counseling</h3>
 		<ul>
 		    <li>Ranking: <?php echo $rankType?></li>
 		    <li>1st in tie recieves more favorable rank</li>
-		    <li>Tier 1 recieves more favorable rank</li>
+		    <li>Tier 1 receives more favorable rank</li>
 		</ul>
 		<div class="table-responsive">
 		<table  class="table table-bordered table-condensed">
