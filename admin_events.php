@@ -28,6 +28,9 @@ if($_POST['unlock']){
 <h2> Current Events</h2>
 <form method="POST" action="">
     <h4>B Events</h4>
+<p><ul>
+<li>Click on the event name to edit.</li>
+<li>Event being run will show up for event supervisors to add scores.</li></ul></p>
 <?php
 $display->admin_events('B');
 ?>
@@ -35,6 +38,7 @@ $display->admin_events('B');
 <?php
 $display->admin_events('C');
 ?>
+
 <input type="submit" name="activate" value="Being Run"/><input type="submit" name="deactivate" value="Not Being Run"/>
 </form>
 <br/>

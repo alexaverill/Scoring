@@ -102,7 +102,7 @@ class events{
         if($type==1){
             $sql = "SELECT * FROM events WHERE active=1 and division=? ORDER BY eventName ASC";
         }else if($type==3){
-	    $sql = "SELECT * FROM events WHERE active=1 ORDER BY eventName ASC";
+	    $sql = "SELECT * FROM events ORDER BY eventName ASC";
         }else{
             $sql = "SELECT * FROM events WHERE division=? ORDER BY eventName ASC";
         }
