@@ -35,7 +35,7 @@ class user {
         }else{
             //$log=new Logging();
 	    //$log->add_entry("INVALID LOGIN:", "$user attempted to login and failed");
-            echo '<h2>Wrong Username or passord</h2>';
+            echo '<h2>Wrong Username or Password</h2>';
         }
         
     }

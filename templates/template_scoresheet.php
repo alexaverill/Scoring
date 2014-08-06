@@ -464,6 +464,7 @@ if($rankType=='high'){
 			var timeoutID;
 
 			function delayedSave() {
+			    saveScores();
 			  timeoutID = window.setTimeout(showSaved, 500);
 			  timeoutID = window.setTimeout(removeSaved, 4000);
 			}
