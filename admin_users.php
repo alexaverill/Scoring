@@ -15,7 +15,14 @@ if($_POST['score']){
 if($_POST['event']){
     $user->add_user($_POST['supName'],$_POST['supPass'],3,$_POST['perms']);
 }
+if($_POST['update']){
+    $input = implode(",",$_POST['events']);
+    $userID = $_POST['userID'];
+    $user->update_permissions($userID,$input);
+}
 ?>
+<div class="row">
+ <div class="col-md-6">
 <h2>Administrators</h2>
 <h3>Add Administrator</h3>
 <form method="POST" action="">
@@ -23,6 +30,9 @@ if($_POST['event']){
     Password: <input type="text" name="adminPass"/><br/>
     <input type="submit" value="Add Administrator" name="admin"/>
 </form>
+<h3>Current Administrators</h3>
+<?php $dis = new display; echo $dis->list_admins();?>
+   </div> <div class="col-md-6">
 <h2>Score Counselor</h2>
 <h3>Add Score Counselor</h3>
 <form method="POST" action="">
@@ -30,6 +40,12 @@ if($_POST['event']){
     Password: <input type="text" name="scorePass"/><br/>
     <input type="submit" value="Add Score Couselor" name="score" />
 </form>
+<h3> Current Score Counselors</h3>
+<?php $dis = new display; echo $dis->list_counselors();?>
+   </div>
+</div>
+   
+   <div class="">
 <h2>Event Supervisors</h2>
 <h3>Add Event Supervisor</h3>
 <form method="POST" action="">
@@ -46,3 +62,6 @@ if($_POST['event']){
     </select><br/>
     <input type="submit" value="Add Event Supervisor" name="event"/>
 </form>
+<h3>Current Event Supervisors</h3>
+<?php $dis = new display; echo $dis->event_sup_table();?>
+  </div>

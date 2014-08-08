@@ -184,22 +184,27 @@ if($rankType=='high'){
 				for (x=0; x<max; x++) {
 				    if (totalPlacement[x][1] != 0 && totalPlacement[x][1] != "") {
 					//update number of teams participating
-					teams_participating ++;
+					
 					if (totalPlacement[x][1] == "P" ) {
 					    P.push(totalPlacement[x]);
 					
 					}else if(totalPlacement[x][1] == "NS"){
 					    NS.push(totalPlacement[x]);    
 					}else if(totalPlacement[x][1] == "DQ"){
-					    DQ.push(totalPlacement[x]);    
+					    DQ.push(totalPlacement[x]);
+					    teams_participating ++;
 					}else if (totalPlacement[x][2]==1) {
 						one.push(totalPlacement[x]);
+						teams_participating ++;
 					}else if (totalPlacement[x][2]==2) {
 						two.push(totalPlacement[x]);
+						teams_participating ++;
 					}else if (totalPlacement[x][2]==3) {
 						three.push(totalPlacement[x]);
+						teams_participating ++;
 					}else if (totalPlacement[x][2]==4) {
 						four.push(totalPlacement[x]);
+						teams_participating ++;
 					}else{
 						//error
 					}
@@ -248,9 +253,9 @@ if($rankType=='high'){
 					//tie = check_tie(x);
 					tie = check_all_ties(finalPlacement[y][1],finalPlacement[y][2]);
 					if (finalPlacement[y][1] == "P") {
-					    placeValue = teams_participating;
+					    placeValue = teams_participating+1; //have to increment to keep it correct
 					}else if (finalPlacement[y][1] == "NS") {
-					    placeValue = teams_participating +1;
+					    placeValue = teams_participating +2; // have to have it be one more then P
 					}else if (finalPlacement[y][1]=="DQ") {
 					    placeValue = max +2;
 					}else{
@@ -346,6 +351,7 @@ if($rankType=='high'){
 					
 					
 				}
+				saveScores();
 			
 			}
 				function check_all_ties(value,tier){
@@ -364,7 +370,7 @@ if($rankType=='high'){
 					//console.log(currentScores);
 					firstIndex = currentScores.indexOf(value);
 					lastIndex = currentScores.lastIndexOf(value);
-					if (value == 0) {
+					if (value == 0 || value == 'P' || value == 'DQ' || value == 'NS' ) {
 						return false;
 					}else if ( firstIndex == lastIndex ) {
 						//tie

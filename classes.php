@@ -27,7 +27,7 @@ class user {
             //TODO:Log user login to file.
             	$_SESSION['name']=$user;
 		$_SESSION['type']=$user_information[0]['type'];
-		$_SESSION['perms']=$user_information[0]['permissions'];
+		$_SESSION['id']=$user_information[0]['id'];
 		$_SESSION['loggedin']=true;
 		$_SESSION['user']=true;
                 echo '<META HTTP-EQUIV=Refresh CONTENT=".5; URL=index.php">';
@@ -45,6 +45,30 @@ class user {
 	$add = $dbh->prepare($adding);
 	$password = password_hash($password,PASSWORD_DEFAULT);
 	$add->execute(array($user,$password,$type,$permissions));
+    }
+    public function return_users($type){
+	global $dbh;
+	$sql = "SELECT * FROM users WHERE type=?";
+	$users = $dbh->prepare($sql);
+	$users->execute(array($type));
+	$users = $users->fetchAll();
+	return $users;
+    }
+    public function update_permissions($userID,$input){
+	global $dbh;
+	$sql = "UPDATE users SET permissions=? WHERE id=?";
+	$update = $dbh->prepare($sql);
+	$update->execute(array($input,$userID));
+    }
+    public function return_permissions($userID){
+	global $dbh;
+	$sql = "SELECT * FROM users WHERE id=?";
+	$get = $dbh->prepare($sql);
+	$get->execute(array($userID));
+	$permission = $get->fetchAll();
+	$permission = $permission[0]['permissions'];
+	$permissionArray = explode(",",$permission);
+	return $permissionArray;
     }
 }
 class uploads{
@@ -193,12 +217,61 @@ class stats{
     }
 }
 class display{
+    public function list_admins(){
+	$user = new user;
+	$list = $user->return_users(1);
+	$html = '';
+	foreach($list as $user){
+	    $html.='<li>'.$user['name'].'</li>';
+	}
+	return $html;
+    }
+    public function list_counselors(){
+	$user = new user;
+	$list = $user->return_users(2);
+	$html = '';
+	foreach($list as $user){
+	    $html.='<li>'.$user['name'].'</li>';
+	}
+	return $html;
+    }
     public function list_comp_events(){
         $events = new events;
         $list = $events->return_comp_events();
         foreach($list as $event){
             echo '<h4>'.$event['eventName'].'</h4>';
         }
+    }
+    public function event_sup_table(){
+	$events = new events;
+	//lets build table header
+	$header = $events->return_events(1,'B');
+	$html = '<table  class="table table-striped table-bordered table-condensed table-hover">';
+	$html .= '<tr><th></th>';
+	foreach($header as $event){
+	    $html .= '<th>'.$event['eventName'].'</th>';
+	}
+	$html .= '<th>Update User</th></tr>';
+	//lets build a table of users
+		$user = new user;
+	$list = $user->return_users(3);
+	$html .= '';
+	foreach($list as $user){
+	    $html.='<tr><td>'.$user['name'].'</td><form method="post" action="">';
+	    $permissions = explode(",",$user['permissions']);
+	    foreach($header as $event){
+		if(in_array(999,$permissions)){
+		    $html.='<td><input type="checkbox" value="'.$event['id'].'" name="events[]" checked/></td>';
+		}else if (in_array($event['id'],$permissions)){
+		    $html.='<td><input type="checkbox" value="'.$event['id'].'" name="events[]" checked/></td>';
+		}else{
+		    $html.='<td><input type="checkbox" value="'.$event['id'].'" name="events[]"/></td>';
+		}
+	    }
+	    $html.='<input type="hidden" value="'.$user['id'].'" name="userID"/><td><input type="submit" value="Update User" name="update"/></form></td></tr>';
+	}
+	$html .='</table>';
+	return $html;
     }
     public function table_of_teams(){
             global $dbh;
