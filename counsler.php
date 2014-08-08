@@ -502,7 +502,7 @@ $numTeams = $display->number_teams($division);
 				<th>Verify Score</th>
 							</tr>
                         <?php
-                            $team = $display->return_teams_SC($division);
+                            $team = $display->return_teams($division);
 			
                             $x = 1;
                             foreach($team as $data){

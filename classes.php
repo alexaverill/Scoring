@@ -314,14 +314,6 @@ class display{
         $teams = $teams->fetchAll();
         return $teams;
     }
-    public function return_teams_SC($division){
-        global $dbh;
-        $sql = "SELECT * FROM teams WHERE division =? ORDER BY place ASC";
-        $teams = $dbh->prepare($sql);
-        $teams->execute(array($division));
-        $teams = $teams->fetchAll();
-        return $teams;
-    }
     public function return_teams_sorted($division){
         global $dbh;
         $sql = "SELECT * FROM teams WHERE division =? ORDER BY rank ASC";
