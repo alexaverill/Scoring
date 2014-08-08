@@ -16,9 +16,11 @@ if($_POST['up']){
 }
 ?>
 <h1>Teams</h1> 
-<form method="POST" action="">
-    Team Number:<input type="text" placeholder="B01" name="teamNumber"/>  Team Name:<input type="text"  placeholder="Team A" name="teamName"/>  Division: <select name="div"><option></option><option value="B">B</option><option value="C">C</option></select>
-    <input type="submit"  value="Add Team" name="teams"/>
+<form method="POST" action="" class="form-inline" role="form">
+    Team Number:<input type="text" class="form-control" placeholder="B01" name="teamNumber"/>
+    Team Name:<input type="text" class="form-control" placeholder="Team A" name="teamName"/>
+    Division: <select class="form-control" name="div"><option></option><option value="B">B</option><option value="C">C</option></select>
+    <input type="submit"  value="Add Team" class="btn btn-primary" name="teams"/>
 </form>
            <h3>Upload Teams</h3>
         <b>Your Excel (.xls) should look like <a href="source/example.xls">this</a></b> 
@@ -26,7 +28,7 @@ if($_POST['up']){
         <form enctype="multipart/form-data" action="" method="POST">
             <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
             Choose a sheet to upload: <input name="uploadedfile" id="file" type="file" /><br/>
-            <input type="submit" name="up" value="Upload File" />
+            <input type="submit" name="up" class="btn btn-primary" value="Upload File" />
         </form>
 <h3>Current Teams</h3>
 <ul>

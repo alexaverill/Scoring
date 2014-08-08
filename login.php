@@ -8,9 +8,9 @@ if($_POST['login']){
 <h1>Login</h1>
 		<div class="user_info">
 			<form method="POST" action="">
-				Username:<input type="text" name="user" size="25"/><br/>
-				Password:<input type="password" name="pass" size="25"/><br/>
-				<input class="myButton" value="Login" name="login" type="submit" />
+				Username:<input type="text" name="user" class="form-control" size="25"/><br/>
+				Password:<input type="password" class="form-control" name="pass" size="25"/><br/>
+				<input class="btn btn-primary" value="Login" name="login" type="submit" />
 				
 			</form>
 		</div>

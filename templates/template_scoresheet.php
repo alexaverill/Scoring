@@ -532,7 +532,7 @@ if($rankType=='high'){
                             foreach($team as $data){
                                 echo '<tr id="R'.$x.'">
 				<td id='.$x.'>'.$data['teamNumber'].' '.$data['teamName'].'</td>
-				<td><input type="text" name="'.$x.'" class="score" id="'.$x.'score" /></td>
+				<td><input type="text" size="10" name="'.$x.'" class="score" id="'.$x.'score" /></td>
 				<td>
 					<select name="1" class="tiers" tabindex="-1" id="'.$x.'tier">
 						<option value="1">1</option>

@@ -485,7 +485,7 @@ $numTeams = $display->number_teams($division);
 		<h1>Score Counseling:</h1>
 		<h1><?php echo $eventName;?></h1>
 		<h2 id="saved"></h2>
-		
+		<div class="table-responsive">
 		<table class="table table-striped table-bordered table-condensed table-hover">
 		    <form method="POST" action="">
 			<tr>
@@ -527,7 +527,7 @@ $numTeams = $display->number_teams($division);
 				    </td>
 				    <td id="'.$x.'tieb">'.$score['placeInTie'].'</td>
 				    <td id="place">'.$score['place'].'</td>
-				    <td><input type="text" name="'.$x.'" class="score" id="'.$x.'score" value="'.$score['score'].'" /></td>
+				    <td><input type="text" name="'.$x.'" class="score" id="'.$x.'score" value="'.$score['score'].'" size="10"/></td>
 				    <td><select name="1" class="tiers" tabindex="-1" id="'.$x.'tier">
 						    <option value="1">1</option>
 						    <option value="2">2</option>
@@ -546,9 +546,10 @@ $numTeams = $display->number_teams($division);
 			    ?>
 			
 		</table>
-		<button onclick="final_save()">Verify Scores</button>
+		
+		<button onclick="final_save()" class="btn btn-primary">Verify Scores</button>
 		    </form>
-		    
+		</div>   
 	</body>
 	
 </html>
