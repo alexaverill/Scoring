@@ -502,14 +502,14 @@ $numTeams = $display->number_teams($division);
 				<th>Verify Score</th>
 							</tr>
                         <?php
-                            $team = $display->return_teams($division);
+                            $team = $display->return_teams_SC($division);
 			
                             $x = 1;
                             foreach($team as $data){
 				
                                 echo '<tr id="R'.$x.'">';
 				//get data from the database now.
-				$sql = "SELECT * FROM scores WHERE eventName=? AND teamName=? ORDER BY place ASC";
+				$sql = "SELECT * FROM scores WHERE eventName=? AND teamName=?";
 				$get = $dbh->prepare($sql);
 				
 				$name=  $data['teamNumber'].' '.$data['teamName'];
