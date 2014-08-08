@@ -180,7 +180,12 @@ class events{
         $activate = $dbh->prepare($sql);
         $activate->execute(array($event));
     }
-    
+    public function deleteEvent($event){
+	global $dbh;
+	$sql = "DELETE FROM events WHERE eventName=?";
+	$delete = $dbh->prepare($sql);
+	$delete->execute(array($event));
+    }
     public function get_event($id,$returnVal){
         global $dbh;
         $sql = "SELECT * FROM events WHERE id =?";
@@ -281,7 +286,8 @@ class display{
             $teamB = $teamB->fetchAll();
             $teamC =  $dbh->query($sqlC);
             $teamC = $teamC->fetchAll();
-            echo '<table class="table table-striped table-bordered table-condensed table-hover" style="float:left; width:400px; margin-left: 30px;"><tr><th>B Teams</th></tr>';
+            echo '<table class="table table-striped table-bordered table-condensed table-hover"style="float:left; width:400px; margin-left: 30px;">
+	    <tr><th>B Teams</th></tr>';
             foreach($teamB as $team){
                 echo'<tr><td>'.'<div style="display:inline" class="edit_number" id="'.$team['teamNumber'].'">'.$team['teamNumber'].'</div>'.' '.'<div style="display:inline" class="edit_name" id="'.$team['teamName'].'">'.$team['teamName'].'</div>'.'</td></td>';
             }

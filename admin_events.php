@@ -17,6 +17,11 @@ if($_POST['deactivate']){
                  $events->updateActive($event,2);
             }
 }
+if($_POST['delete']){
+     foreach($_POST['setActive'] as $event){
+                 $events->deleteEvent($event);
+            }
+}
 if($_POST['add']){
     $events->add_events($_POST['event_name'],$_POST['division'],$_POST['type'],$_POST['method']);
 }
@@ -40,7 +45,9 @@ $display->admin_events('B');
 $display->admin_events('C');
 ?>
 
-<input type="submit" name="activate" value="Being Run"/><input type="submit" name="deactivate" value="Not Being Run"/>
+<input type="submit" name="activate" class="btn btn-primary" value="Being Run"/>
+<input type="submit"  class="btn btn-warning" name="deactivate" value="Not Being Run"/>
+<input type="submit"  class="btn btn-danger" name="delete" value="Delete Events"/>
 </form>
 <br/>
 <h2>Add Events</h2>

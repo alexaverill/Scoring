@@ -30,7 +30,7 @@ if($_POST['up']){
         </form>
 <h3>Current Teams</h3>
 <ul>
-   <li>Click to edit</li>
+   <li>Click team names or numbers to edit</li>
 </ul>
 <?php
     $display->table_of_teams();

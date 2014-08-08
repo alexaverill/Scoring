@@ -509,7 +509,7 @@ $numTeams = $display->number_teams($division);
 				
                                 echo '<tr id="R'.$x.'">';
 				//get data from the database now.
-				$sql = "SELECT * FROM scores WHERE eventName=? AND teamName=?";
+				$sql = "SELECT * FROM scores WHERE eventName=? AND teamName=? ORDER BY score DESC";
 				$get = $dbh->prepare($sql);
 				
 				$name=  $data['teamNumber'].' '.$data['teamName'];
