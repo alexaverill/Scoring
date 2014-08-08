@@ -17,8 +17,8 @@ if($_POST['up']){
 ?>
 <h1>Teams</h1> 
 <form method="POST" action="">
-    Team Number:<input type="text" name="teamNumber"/>  Team Name:<input type="text" name="teamName"/>  Division: <select name="div"><option></option><option value="B">B</option><option value="C">C</option></select>
-    <input type="submit" value="Add Team" name="teams"/>
+    Team Number:<input type="text" placeholder="B01" name="teamNumber"/>  Team Name:<input type="text"  placeholder="Team A" name="teamName"/>  Division: <select name="div"><option></option><option value="B">B</option><option value="C">C</option></select>
+    <input type="submit"  value="Add Team" name="teams"/>
 </form>
            <h3>Upload Teams</h3>
         <b>Your Excel (.xls) should look like <a href="source/example.xls">this</a></b> 
