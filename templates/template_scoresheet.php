@@ -518,7 +518,7 @@ if($rankType=='high'){
 		    <li>Tier 1 receives more favorable rank</li>
 		</ul>
 		<div class="table-responsive">
-		<table  class="table table-bordered table-condensed">
+		<table  class="table table-striped table-bordered table-condensed">
 			<tr>
 				<th>School</th>
 				<th>Raw Score</th>
@@ -548,8 +548,8 @@ if($rankType=='high'){
                             }?>
 			
 		</table>
-		<button onclick="delayedSave()">Save</button>
-		<button onclick="final_save()">Save and Submit</button>
+		<button onclick="delayedSave()" class="btn btn-success" >Save</button>
+		<button onclick="final_save()"class="btn btn-primary">Save and Submit</button>
 		</div>
 	</body>
 	
