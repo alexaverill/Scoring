@@ -546,7 +546,7 @@ $numTeams = $display->number_teams($division);
 			    ?>
 			
 		</table>
-		<button onclick="final_save()">Save this Event</button>
+		<button onclick="final_save()">Verify Scores</button>
 		    </form>
 		    
 	</body>
