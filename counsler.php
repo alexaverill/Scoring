@@ -111,6 +111,7 @@ $numTeams = $display->number_teams($division);
 			    }
 			   }
 			function saveScores(){
+			    //push to localstorage, as well as to the raw score table in DB
 				localStorage.setItem(eventName, JSON.stringify(totalPlacement));
 				//send raw scores across to be stored.
 				$.ajax({
@@ -173,22 +174,27 @@ $numTeams = $display->number_teams($division);
 				for (x=0; x<max; x++) {
 				    if (totalPlacement[x][1] != 0 && totalPlacement[x][1] != "") {
 					//update number of teams participating
-					teams_participating ++;
+				
 					if (totalPlacement[x][1] == "P" ) {
 					    P.push(totalPlacement[x]);
 					
 					}else if(totalPlacement[x][1] == "NS"){
 					    NS.push(totalPlacement[x]);    
 					}else if(totalPlacement[x][1] == "DQ"){
-					    DQ.push(totalPlacement[x]);    
+					    DQ.push(totalPlacement[x]);
+					    teams_participating ++;
 					}else if (totalPlacement[x][2]==1) {
 						one.push(totalPlacement[x]);
+						teams_participating ++;
 					}else if (totalPlacement[x][2]==2) {
 						two.push(totalPlacement[x]);
+						teams_participating ++;
 					}else if (totalPlacement[x][2]==3) {
 						three.push(totalPlacement[x]);
+						teams_participating ++;
 					}else if (totalPlacement[x][2]==4) {
 						four.push(totalPlacement[x]);
+						teams_participating ++;
 					}else{
 						//error
 					}
@@ -237,9 +243,9 @@ $numTeams = $display->number_teams($division);
 					//tie = check_tie(x);
 					tie = check_all_ties(finalPlacement[y][1],finalPlacement[y][2]);
 					if (finalPlacement[y][1] == "P") {
-					    placeValue = teams_participating;
+					    placeValue = teams_participating+1; //have to increment to keep it correct
 					}else if (finalPlacement[y][1] == "NS") {
-					    placeValue = teams_participating +1;
+					    placeValue = teams_participating +2; // have to have it be one more then P
 					}else if (finalPlacement[y][1]=="DQ") {
 					    placeValue = max +2;
 					}else{
@@ -338,7 +344,7 @@ $numTeams = $display->number_teams($division);
 					//console.log(currentScores);
 					firstIndex = currentScores.indexOf(value);
 					lastIndex = currentScores.lastIndexOf(value);
-					if (value == 0) {
+					if (value == 0 || value == 'P' || value == 'DQ' || value == 'NS' ) {
 						return false;
 					}else if ( firstIndex == lastIndex ) {
 						//tie
@@ -398,27 +404,30 @@ $numTeams = $display->number_teams($division);
 			}
 			function final_save(){
 			    for(x=1; x<max+1;x++){
-				scoresL = x+"score";
-				tier = x+"tier";
-				place = x+"place"
-				placeR = document.getElementById(place).innerHTML;
-				scoreNum = document.getElementById(scoresL).value;
-				
-				tierR = document.getElementById(tier).value;
-				schoolName=document.getElementById(x).innerHTML;
-				 $.ajax({
-					type: "POST",
-					url: "bridges/finalSave.php",
-					    data: { event: eventName, score: scoreNum,school:schoolName,place: placeR,tier: tierR, locked:"1" }
-				    })
-				    .done(function( msg ) {
-					if (msg.length>0) {
-					    alert(msg);
-					
-					}
-					    //alert( "Data Saved: " + msg );
-						console.log(msg);
-				    });
+				checkCheck = x+"check";
+				if(document.getElementById(checkCheck).checked){
+				    scoresL = x+"score";
+				    tier = x+"tier";
+				    place = x+"place"
+				    placeR = document.getElementById(place).innerHTML;
+				    scoreNum = document.getElementById(scoresL).value;
+				    
+				    tierR = document.getElementById(tier).value;
+				    schoolName=document.getElementById(x).innerHTML;
+				     $.ajax({
+					    type: "POST",
+					    url: "bridges/finalSave.php",
+						data: { event: eventName, score: scoreNum,school:schoolName,place: placeR,tier: tierR, locked:"1" }
+					})
+					.done(function( msg ) {
+					    if (msg.length>0) {
+						alert(msg);
+					    
+					    }
+						//alert( "Data Saved: " + msg );
+						    console.log(msg);
+					});
+				}
 			    }
 			    delayedSave();
 			}
@@ -506,6 +515,10 @@ $numTeams = $display->number_teams($division);
 				$name=  $data['teamNumber'].' '.$data['teamName'];
 				$get->execute(array($eventName,$name));
 				foreach($get->fetchAll() as $score){
+				    $check ='';
+				    if($data['confirmed']==1){
+					$check = 'checked';
+				    }
 				    echo'<td id='.$x.'>'.$data['teamNumber'].' '.$data['teamName'].'</td>
 				    <td>'.$score['score'].'</td>
 				   
@@ -524,7 +537,7 @@ $numTeams = $display->number_teams($division);
 					    </td>
 					    <td id="'.$x.'tie">'.$score['placeInTie'].'</td>
 					    <td id="'.$x.'place"></td>
-				    <td> <input type="checkbox" value="'.$data['teamName'].'" name="confirm[]"/></form>';
+				    <td> <input type="checkbox" id="'.$x.'check" value="'.$data['teamName'].'" name="confirm[]" '.$check.'/></form>';
 				
 				}
 			echo '</tr>';
