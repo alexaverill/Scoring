@@ -529,7 +529,7 @@ $numTeams = $display->number_teams($division);
 				    <td id="place">'.$score['place'].'</td>
 				    <td><input type="text" name="'.$x.'" class="score" id="'.$x.'score" value="'.$score['score'].'" size="10"/></td>
 				    <td><select name="1" class="tiers" tabindex="-1" id="'.$x.'tier">';
-				    if($score['tier'] == 1){
+				    if($score['tier'] == '1'){
 					echo' <option value="1" selected=selected>1</option>';
 				    }else{
 						   echo' <option value="1">1</option>';
@@ -544,7 +544,7 @@ $numTeams = $display->number_teams($division);
 				    }else{
 						   echo' <option value="3">3</option>';
 				    }
-				    if($score['tier'] == 4){
+				    if($score['tier'] == '4'){
 					echo' <option value="4" selected=selected>4</option>';
 				    }else{
 						   echo' <option value="4">4</option>';
