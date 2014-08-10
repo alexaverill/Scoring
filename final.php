@@ -245,12 +245,33 @@ global $dbh;
 		     <li><a href="admin_events.php">Check the event page for status</a></li>
 	      </ul>
               <?php
-echo '<table class="table table-striped table-bordered table-condensed table-hover"><tr><th>Teams:</th>';
+echo '<table class="table table-striped table-condensed table-hover table-header-rotated"> <thead><tr>
+<th class="rotate-45"><div><span>Teams</span></div></th>';
 foreach($listEvents as $event){
-       echo '<th>'.$event['eventName'].'</th>';
+      // echo '<th>'.$event['eventName'].'</th>';
+      echo '<th class="rotate-45"><div><span>'.$event['eventName'].'</span></div></th>';
     }
-
-echo '<th>Final Score</th><th>Rank</th></tr>';
+/*
+ *
+ *
+ *
+ *    <thead>
+      <tr>
+        <!-- First column header is not rotated -->
+        <th></th>
+        <!-- Following headers are rotated -->
+        <th class="rotate-45"><div><span>Column header 1</span></div></th>
+        <th class="rotate-45"><div><span>Column header 2</span></div></th>
+        <th class="rotate-45"><div><span>Column header 3</span></div></th>
+        <th class="rotate-45"><div><span>Column header 4</span></div></th>
+        <th class="rotate-45"><div><span>Column header 5</span></div></th>
+        <th class="rotate-45"><div><span>Column header 6</span></div></th>
+      </tr>
+    </thead>
+    */
+echo '<th class="rotate-45"><div><span>Final Score</span></div></th>
+<th class="rotate-45"><div><span>Rank</span></div></th></tr>
+</thead>';
 $x=0;
 foreach($teams as $team){
     $team = $team['teamNumber'].' '.$team['teamName'];
