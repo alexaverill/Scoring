@@ -251,12 +251,12 @@ class display{
 	$events = new events;
 	//lets build table header
 	$header = $events->return_events(1,'B');
-	$html = '<table  class="table table-striped table-bordered table-condensed table-hover">';
-	$html .= '<tr><th></th>';
+	$html = '<table  class="table table-striped table-condensed table-hover table-header-rotated">';
+	$html .= '<tr><thead><th></th>';
 	foreach($header as $event){
-	    $html .= '<th>'.$event['eventName'].'</th>';
+	    $html .= '<th class="rotate-45"><div><span>'.$event['eventName'].'</span></div></th>';
 	}
-	$html .= '<th>Update User</th></tr>';
+	$html .= '<th class="rotate-45"><div><span>Update User</span></div></th></thead></tr>';
 	//lets build a table of users
 		$user = new user;
 	$list = $user->return_users(3);
