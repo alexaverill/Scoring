@@ -251,7 +251,37 @@ class display{
 	$events = new events;
 	//lets build table header
 	$header = $events->return_events(1,'B');
-	$html = '<table  class="table table-striped table-condensed table-hover table-header-rotated">';
+	$html='';
+	$html .='<h1>B Division</h1>';
+	$html .= '<table  class="table table-striped table-condensed table-hover table-header-rotated">';
+	$html .= '<tr><thead><th></th>';
+	foreach($header as $event){
+	    $html .= '<th class="rotate-45"><div><span>'.$event['eventName'].'</span></div></th>';
+	}
+	$html .= '<th class="rotate-45"><div><span>Update User</span></div></th></thead></tr>';
+	//lets build a table of users
+		$user = new user;
+	$list = $user->return_users(3);
+	$html .= '';
+	foreach($list as $user){
+	    $html.='<tr><td>'.$user['name'].'</td><form method="post" action="">';
+	    $permissions = explode(",",$user['permissions']);
+	    foreach($header as $event){
+		if(in_array(999,$permissions)){
+		    $html.='<td><input type="checkbox" value="'.$event['id'].'" name="events[]" checked/></td>';
+		}else if (in_array($event['id'],$permissions)){
+		    $html.='<td><input type="checkbox" value="'.$event['id'].'" name="events[]" checked/></td>';
+		}else{
+		    $html.='<td><input type="checkbox" value="'.$event['id'].'" name="events[]"/></td>';
+		}
+	    }
+	    $html.='<input type="hidden" value="'.$user['id'].'" name="userID"/><td><input type="submit" value="Update User" name="update"/></form></td></tr>';
+	}
+	$html .='</table>';
+	//C table
+	$html .='<h1>C Division</h1>';
+		$header = $events->return_events(1,'C');
+	$html .= '<table  class="table table-striped table-condensed table-hover table-header-rotated">';
 	$html .= '<tr><thead><th></th>';
 	foreach($header as $event){
 	    $html .= '<th class="rotate-45"><div><span>'.$event['eventName'].'</span></div></th>';

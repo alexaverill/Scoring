@@ -15,18 +15,9 @@
           position:relative;
          top:20px;
       }
-      /*th {
-min-width: 163px;
--moz-transform: rotate(-90deg);
--moz-transform-origin: top left;
--webkit-transform: rotate(-90deg);
--webkit-transform-origin: top left;
--o-transform: rotate(-90deg);
--o-transform-origin: top left;
-position: relative;
-top: 20px;
-max-height: 10px;
-}*/
+/* Following code found in tutorial here: http://jimmybonney.com/articles/column_header_rotation_css/
+ * taken to make my life much easier then reinventing the wheel
+ * */
       table-header-rotated th.row-header{
   width: auto;
 }
