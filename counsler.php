@@ -15,7 +15,17 @@ $numTeams = $display->number_teams($division);
 }else{
     //throw error;
 }
-
+$rankType=$event->get_method($id);
+if($rankType=='high'){
+    $rankType='High to Low';
+    $numRankType = 2;
+}else if($rankType=='low'){
+    $rankType='Low to High';
+    $numRankType = 1;
+}else{
+    $rankType='High to Low';
+    $numRankType = 2;
+}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
@@ -52,7 +62,7 @@ $numTeams = $display->number_teams($division);
 		
 		<script>
 			var scores = [];
-			var sortMethod = 1; //1 is a low to high sort, two is a high to low sort.
+			var sortMethod = <?php echo $numRankType;?>;; //1 is a low to high sort, two is a high to low sort.
 			var max =  <?php echo $numTeams;?>;
 			var teams_participating = 0;
                         var eventName = <?php echo '"'.$eventName.'"';?>;
@@ -512,7 +522,7 @@ $numTeams = $display->number_teams($division);
 				$sql = "SELECT * FROM scores WHERE eventName=? AND teamName=?";
 				$get = $dbh->prepare($sql);
 				
-				$name=  $data['teamNumber'].' '.$data['teamName'];
+				$name =  $data['teamNumber'].' '.$data['teamName'];
 				$get->execute(array($eventName,$name));
 				foreach($get->fetchAll() as $score){
 				    $check ='';
