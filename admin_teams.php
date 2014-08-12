@@ -7,6 +7,17 @@ if($_SESSION['type']!=1){
 }
 $display = new display;
 $events= new events;
+$settings = new settings;
+if($_POST['udateTeamRankB']){
+   $settings->updateTeamsToRank('B',$_POST['numberB']);
+}
+if($_POST['udateTeamRankC']){
+   $settings->updateTeamsToRank('C',$_POST['numberC']);
+}
+$numTeamsB = $display->number_teams('B');
+$numRankB = $settings->teamsToRank('B');
+$numRankC = $settings->teamsToRank('C');
+$numTeamsC = $display->number_teams('C');
 if($_POST['teams']){
    $display->add_teams($_POST['teamName'],$_POST['teamNumber'],$_POST['div']);
 }
@@ -14,6 +25,7 @@ if($_POST['up']){
    $up = new uploads;
     $up->upload($_FILES['uploadedfile']['name'],$_FILES['uploadedfile']['tmp_name']);
 }
+
 ?>
 <h1>Teams</h1> 
 <form method="POST" action="" class="form-inline" role="form">
@@ -34,6 +46,39 @@ if($_POST['up']){
 <ul>
    <li>Click team names or numbers to edit</li>
 </ul>
+<h3>Number of Teams to Rank B</h3>
+<form method="POST" action="">
+   Suggested: <?php echo ceil($numTeamsB/2);  ?><br/>
+   <select name="numberB">
+      <?php
+      for($x=0;$x<=$numTeamsB; $x++){
+         if($x == $numRankB){
+            echo '<option value="'.$x.'" selected=selected>'.$x.'</option>';
+         }else{
+            echo '<option value="'.$x.'">'.$x.'</option>';
+         }
+      }
+      ?>
+   </select>
+   <input type="Submit" value="Update" name="udateTeamRankB"/>
+</form>
+<h3>Number of Teams to Rank C</h3>
+<form method="POST" action="">
+   Suggested: <?php echo  ceil($numTeamsC/2); ?><br/>
+   <select name="numberC">
+      <?php
+      for($x=0;$x<=$numTeamsC; $x++){
+         if($x == $numRankC){
+            echo '<option value="'.$x.'" selected=selected>'.$x.'</option>';
+         }else{
+            echo '<option value="'.$x.'">'.$x.'</option>';
+         }
+      }
+      ?>
+   </select>
+   <input type="Submit" value="Update" name="udateTeamRankC"/>
+</form>
+<h3>Teams</h3>
 <?php
     $display->table_of_teams();
 ?>

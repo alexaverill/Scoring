@@ -1,6 +1,7 @@
 <?php
 $display = new display;
 $event = new events;
+$settings = new settings;
 if(is_numeric($_GET['event'])){
     $id = $_GET['event'];
 }else{
@@ -24,6 +25,7 @@ if($rankType=='high'){
     $rankType='High to Low';
     $numRankType = 2;
 }
+$teamsToRank = $settings->teamsToRank($division);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
@@ -66,7 +68,8 @@ if($rankType=='high'){
 			var max =  <?php echo $numTeams;?>;
 			var teams_participating = 0;
                         var eventName = <?php echo '"'.$eventName.'"';?>;
-			var teamsToRank = <?php echo $teamsToRank; ?>
+			var teamsToRank = <?php echo $teamsToRank; ?>;
+			//var teamsToRank = 3;
 			// [[row,score,tier,tieplace,tie]]
 			//for x<max totalPlacement.push([])
 			//var totalPlacement = [[],[],[],[],[],[]];
@@ -253,15 +256,33 @@ if($rankType=='high'){
 					rowLocal = finalPlacement[y][0];
 					//tie = check_tie(x);
 					tie = check_all_ties(finalPlacement[y][1],finalPlacement[y][2]);
-					if (finalPlacement[y][1] == "P") {
-					    placeValue = teams_participating+1; //have to increment to keep it correct
-					}else if (finalPlacement[y][1] == "NS") {
-					    placeValue = teams_participating +2; // have to have it be one more then P
-					}else if (finalPlacement[y][1]=="DQ") {
-					    placeValue = max +2;
+					if (teamsToRank == 0) {
+					    if (finalPlacement[y][1] == "P") {
+						placeValue = teams_participating+1; //have to increment to keep it correct
+					    }else if (finalPlacement[y][1] == "NS") {
+						placeValue = teams_participating +2; // have to have it be one more then P
+					    }else if (finalPlacement[y][1]=="DQ") {
+						placeValue = max +2;
+					    }else{
+					       placeValue = y+1; 
+					    }
 					}else{
-					   placeValue = y+1; 
+					    if (finalPlacement[y][1] == "P") {
+						placeValue = teamsToRank+1; //have to increment to keep it correct
+					    }else if (finalPlacement[y][1] == "NS") {
+						placeValue = teamsToRank +2; // have to have it be one more then P
+					    }else if (finalPlacement[y][1]=="DQ") {
+						placeValue = max +2;
+					    }else{
+					       if (y+1<= teamsToRank) {
+						placeValue = y+1; 
+					       }else{
+						placeValue = teamsToRank;
+					       }
+					       
+					    }
 					}
+
 					placeLocat = rowLocal+"place";
 					
 					if (!tie) {
@@ -317,8 +338,14 @@ if($rankType=='high'){
 							    break;
 							}
 						    }
-						    placeValue=parseInt(tiePlace) + parseInt(finalPlacement[y][4])
-						    document.getElementById(placeLocat).innerHTML = placeValue;
+						    //placeValue=parseInt(tiePlace) + parseInt(finalPlacement[y][4])
+						    updateTiePlace = parseInt(tiePlace) + parseInt(finalPlacement[y][4]);
+						    if (updateTiePlace < teamsToRank ) {
+							finalTiePlace = updateTiePlace;
+						    }else{
+							finalTiePlace = teamsToRank;
+						    }
+						    document.getElementById(placeLocat).innerHTML = finalTiePlace;
 						    name = document.getElementById(finalPlacement[y][0]).innerHTML;
 						    document.getElementById(row).className = 'blue';
 						    placeInTie = finalPlacement[y][4];
@@ -390,7 +417,7 @@ if($rankType=='high'){
 				}
 			function updateTie(locationchange,placeInTie){
 				//get scoere
-				console.log(placeInTie)
+				//console.log(placeInTie)
 				scorePlace = locationchange +'score';
 				tiePlace = locationchange +"tie"
 				originalScore = document.getElementById(scorePlace).value;
@@ -398,8 +425,10 @@ if($rankType=='high'){
 				toAdd = parseFloat(originalScore)+parseFloat(stringAdd);
 				//update score
 				totalPlacement[locationchange-1][4] = placeInTie;//store the location of place
-				
-				//editableGrid.setValueAt(locationchange-1,1,toAdd,true);
+				//console.log(toAdd); 
+				if (placeInTie > teamsToRank ) {
+				    toAdd = teamsToRank;
+				}
 				document.getElementById(tiePlace).innerHTML = toAdd;
 				ranking();
 				//update_scores();

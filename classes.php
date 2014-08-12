@@ -221,6 +221,28 @@ class stats{
         return $numberDone;
     }
 }
+class settings{
+    public function teamsToRank($division){
+	global $dbh;
+	$sql = "SELECT * FROM setting WHERE id=1";
+	$get = $dbh->query($sql);
+	$get = $get->fetchAll();
+	$location = 'teamsToRank'.$division;
+
+	return $get[0][$location];
+    }
+    public function updateTeamsToRank($division,$number){
+	global $dbh;
+	$sql = "UPDATE setting SET teamsToRankC=? WHERE id=1";
+	if($division == 'B'){
+	    $sql = "UPDATE setting SET teamsToRankB=? WHERE id=1";
+	}
+	
+	$update =$dbh->prepare($sql);
+	$update->execute(array($number));
+	return true;
+    }
+}
 class display{
     public function list_admins(){
 	$user = new user;

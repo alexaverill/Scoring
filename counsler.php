@@ -3,6 +3,7 @@ include('header.php');
 include('nav.php');
 $display = new display;
 $event = new events;
+$settings = new settings;
 if(is_numeric($_GET['event'])){
     $id = $_GET['event'];
 }else{
@@ -26,6 +27,7 @@ if($rankType=='high'){
     $rankType='High to Low';
     $numRankType = 2;
 }
+$teamsToRank = $settings->teamsToRank($division);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
@@ -66,6 +68,7 @@ if($rankType=='high'){
 			var max =  <?php echo $numTeams;?>;
 			var teams_participating = 0;
                         var eventName = <?php echo '"'.$eventName.'"';?>;
+			var teamsToRank = <?php echo $teamsToRank; ?>;
 			// [[row,score,tier,tieplace,tie]]
 			//for x<max totalPlacement.push([])
 			//var totalPlacement = [[],[],[],[],[],[]];
@@ -252,14 +255,31 @@ if($rankType=='high'){
 					rowLocal = finalPlacement[y][0];
 					//tie = check_tie(x);
 					tie = check_all_ties(finalPlacement[y][1],finalPlacement[y][2]);
-					if (finalPlacement[y][1] == "P") {
-					    placeValue = teams_participating+1; //have to increment to keep it correct
-					}else if (finalPlacement[y][1] == "NS") {
-					    placeValue = teams_participating +2; // have to have it be one more then P
-					}else if (finalPlacement[y][1]=="DQ") {
-					    placeValue = max +2;
+					if (teamsToRank == 0) {
+					    if (finalPlacement[y][1] == "P") {
+						placeValue = teams_participating+1; //have to increment to keep it correct
+					    }else if (finalPlacement[y][1] == "NS") {
+						placeValue = teams_participating +2; // have to have it be one more then P
+					    }else if (finalPlacement[y][1]=="DQ") {
+						placeValue = max +2;
+					    }else{
+					       placeValue = y+1; 
+					    }
 					}else{
-					   placeValue = y+1; 
+					    if (finalPlacement[y][1] == "P") {
+						placeValue = teamsToRank+1; //have to increment to keep it correct
+					    }else if (finalPlacement[y][1] == "NS") {
+						placeValue = teamsToRank +2; // have to have it be one more then P
+					    }else if (finalPlacement[y][1]=="DQ") {
+						placeValue = max +2;
+					    }else{
+					       if (y+1<= teamsToRank) {
+						placeValue = y+1; 
+					       }else{
+						placeValue = teamsToRank;
+					       }
+					       
+					    }
 					}
 					placeLocat = rowLocal+"place";
 					
@@ -305,7 +325,13 @@ if($rankType=='high'){
 							    break;
 							}
 						    }
-						    document.getElementById(placeLocat).innerHTML = parseInt(tiePlace) + parseInt(finalPlacement[y][4]);
+						    updateTiePlace = parseInt(tiePlace) + parseInt(finalPlacement[y][4]);
+						    if (updateTiePlace < teamsToRank ) {
+							finalTiePlace = updateTiePlace;
+						    }else{
+							finalTiePlace = teamsToRank;
+						    }
+						    document.getElementById(placeLocat).innerHTML = finalTiePlace;
 						    
 						}
 						
