@@ -340,10 +340,14 @@ $teamsToRank = $settings->teamsToRank($division);
 						    }
 						    //placeValue=parseInt(tiePlace) + parseInt(finalPlacement[y][4])
 						    updateTiePlace = parseInt(tiePlace) + parseInt(finalPlacement[y][4]);
-						    if (updateTiePlace < teamsToRank ) {
-							finalTiePlace = updateTiePlace;
+						    if (teamsToRank !=0) {
+							if (updateTiePlace < teamsToRank ) {
+							    finalTiePlace = updateTiePlace;
+							}else{
+							    finalTiePlace = teamsToRank;
+							}
 						    }else{
-							finalTiePlace = teamsToRank;
+							finalTiePlace = updateTiePlace;
 						    }
 						    document.getElementById(placeLocat).innerHTML = finalTiePlace;
 						    name = document.getElementById(finalPlacement[y][0]).innerHTML;
