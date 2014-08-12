@@ -47,6 +47,7 @@ if($_POST['up']){
    <li>Click team names or numbers to edit</li>
 </ul>
 <h3>Number of Teams to Rank B</h3>
+Leave this set to 0 to disable.
 <form method="POST" action="">
    Suggested: <?php echo ceil($numTeamsB/2);  ?><br/>
    <select name="numberB">
@@ -63,6 +64,7 @@ if($_POST['up']){
    <input type="Submit" value="Update" name="udateTeamRankB"/>
 </form>
 <h3>Number of Teams to Rank C</h3>
+Leave this set to 0 to disable.
 <form method="POST" action="">
    Suggested: <?php echo  ceil($numTeamsC/2); ?><br/>
    <select name="numberC">
