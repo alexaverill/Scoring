@@ -584,6 +584,7 @@ $teamsToRank = $settings->teamsToRank($division);
 		</table>
 		<button onclick="delayedSave()" class="btn btn-success" >Save</button>
 		<button onclick="final_save()"class="btn btn-primary">Save and Submit</button>
+		<button onclick="localStorage.clear();location.reload();" class="btn btn-danger">Clear Data</button>
 		</div>
 	</body>
 	
