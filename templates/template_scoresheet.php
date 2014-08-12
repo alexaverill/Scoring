@@ -66,6 +66,7 @@ if($rankType=='high'){
 			var max =  <?php echo $numTeams;?>;
 			var teams_participating = 0;
                         var eventName = <?php echo '"'.$eventName.'"';?>;
+			var teamsToRank = <?php echo $teamsToRank; ?>
 			// [[row,score,tier,tieplace,tie]]
 			//for x<max totalPlacement.push([])
 			//var totalPlacement = [[],[],[],[],[],[]];
