@@ -11,7 +11,7 @@ global $dbh;
 ?>
 <?php include('nav.php');?>
               
-<h1>B Division</h1><table class="table table-striped table-bordered table-condensed table-hover table-header-rotated" ><tr><th>Teams:</th>
+<h1>B Division</h1><table  class="table table-striped table-condensed table-hover table-header-rotated"><tr><th>Teams:</th>
 <?php
 foreach($listEvents as $event){
        echo '<th class="rotate-45"><div><span>'.$event['eventName'].'</span></div></th>';
