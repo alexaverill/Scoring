@@ -526,7 +526,7 @@ $teamsToRank = $settings->teamsToRank($division);
 		<h1><?php echo $eventName;?></h1>
 		<h2 id="saved"></h2>
 		<div class="table-responsive">
-		<table class="table table-striped table-bordered table-condensed table-hover">
+		<table class="table table-bordered table-condensed table-hover">
 		    <form method="POST" action="">
 			<tr>
 				<th>School</th>
