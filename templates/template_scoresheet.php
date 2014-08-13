@@ -489,14 +489,14 @@ $teamsToRank = $settings->teamsToRank($division);
 			    //connectionStatus = false;
 			    warningLocation = "connection";
 			    if (!connectionStatus) {
-				document.getElementById(warningLocation).className="bg-danger";
+				document.getElementById(warningLocation).className="alert alert-warning";
 				document.getElementById(warningLocation).innerHTML = "Currently operating without a connection";
 				connection = false;
 				return false;
 			    }else{
-				document.getElementById(warningLocation).className="bg-danger";
-				document.getElementById(warningLocation).innerHTML = "Connection Restored, data saved.";
 				if (!connection) {
+				    document.getElementById(warningLocation).className="alert alert-success";
+				    document.getElementById(warningLocation).innerHTML = "Connection Restored, data saved.";
 				    ranking();
 				}
 				connection = true;
@@ -546,7 +546,7 @@ $teamsToRank = $settings->teamsToRank($division);
 		<h1><?php echo $division.' '.$eventName;?></h1>
 		<h2 id="locked"></h2>
 		<h2 id="saved"></h2>
-		<p id="connection"></p>
+		<div id="connection"></div>
 		<h3>Event Supervisors, enter your scores, they will be saved automatically.
 		Once ALL of your scores are in hit save and submit, then report to score counseling</h3>
 		<ul>
