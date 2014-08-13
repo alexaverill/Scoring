@@ -9,7 +9,7 @@ if(isset($_GET['event'])){
     
      
 }
-if(in_array($eventId,$permissions) || $permissions == 999){
+if(in_array($eventId,$permissions) || in_array(999,$permissions)){
     $display->score_sheet($eventId);
 }else{
     echo 'You do not have permission to view that event.';
