@@ -107,22 +107,6 @@ $teamsToRank = $settings->teamsToRank($division);
 					});
 				}
 			
-			function checkNetConnection(){
-			    var xhr = new XMLHttpRequest();
-			    var file = "http://yoursite.com/somefile.png";
-			    var r = Math.round(Math.random() * 10000);
-			    xhr.open('HEAD', file + "?subins=" + r, false);
-			    try {
-			     xhr.send();
-			     if (xhr.status >= 200 && xhr.status < 304) {
-			      return true;
-			     } else {
-			      return false;
-			     }
-			    } catch (e) {
-			     return false;
-			    }
-			   }
 			function saveScores(){
 				localStorage.setItem(eventName, JSON.stringify(totalPlacement));
 				//send raw scores across to be stored.
@@ -462,13 +446,7 @@ $teamsToRank = $settings->teamsToRank($division);
 				saveScores();
 				ranking();
 			}
-			function supports_html5_storage() {
-				try {
-				  return 'localStorage' in window && window['localStorage'] !== null;
-				} catch (e) {
-				  return false;
-				}
-			}
+
 			function final_save(){
 			    for(x=1; x<max+1;x++){
 				scoresL = x+"score";
@@ -510,6 +488,7 @@ $teamsToRank = $settings->teamsToRank($division);
 			}
 			window.onload = function() {
 				//see if local storage has a scores array
+				//alert(checkNetConnection();
 				if (localStorage.getItem(eventName)) {
 					loadScores();
 					update_scores();
@@ -517,6 +496,29 @@ $teamsToRank = $settings->teamsToRank($division);
 					create_total_placement();
 				}
 					
+			}
+			function supports_html5_storage() {
+				try {
+				  return 'localStorage' in window && window['localStorage'] !== null;
+				} catch (e) {
+				  return false;
+				}
+			}
+			function checkNetConnection(){
+			    var xhr = new XMLHttpRequest();
+			    var file = "http://esus.us/source/dot.png";
+			    var r = Math.round(Math.random() * 10000);
+			    xhr.open('HEAD', file + "?subins=" + r, false);
+			    try {
+			     xhr.send();
+			     if (xhr.status >= 200 && xhr.status < 304) {
+			      return true;
+			     } else {
+			      return false;
+			     }
+			    } catch (e) {
+			     return false;
+			    }
 			}
 			 $(document).on("change",'.score', function() {
 			    newScore = $(this).val();
