@@ -490,7 +490,7 @@ $teamsToRank = $settings->teamsToRank($division);
 			    warningLocation = "connection";
 			    if (!connectionStatus) {
 				document.getElementById(warningLocation).className="alert alert-warning";
-				document.getElementById(warningLocation).innerHTML = "Currently operating without a connection";
+				document.getElementById(warningLocation).innerHTML = "Currently operating without a connection, data will be saved to the server once connection is restored";
 				connection = false;
 				return false;
 			    }else{
