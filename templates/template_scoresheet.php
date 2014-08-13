@@ -504,6 +504,16 @@ $teamsToRank = $settings->teamsToRank($division);
 				  return false;
 				}
 			}
+			function checkConnection(){
+			    //connectionStatus = checkNetConnection();
+			    connectionStatus = false;
+			    warningLocation = "connection";
+			    if (!connectionStatus) {
+				document.getElementById(warningLocation).className="bg-danger";
+			    }else{
+				document.getElementById(warningLocation).className="";
+			    }
+			}
 			function checkNetConnection(){
 			    var xhr = new XMLHttpRequest();
 			    var file = "http://esus.us/source/dot.png";
@@ -522,15 +532,17 @@ $teamsToRank = $settings->teamsToRank($division);
 			}
 			 $(document).on("change",'.score', function() {
 			    newScore = $(this).val();
-			    
+					checkConnection();
 					update_scores(newScore);
 					saveScores();
 			 });
 			  $(document).on("change",'.tiers', function() {
+					checkConnection();
 					update_scores();
 					saveScores();
 			 });
 			 $(document).on("change",'.ties', function() {
+				checkConnection();
 				rowPlace = $(this).attr('name');
 				placeInTie = $("option:selected", this).val();
 				//alert(placeInTie);
@@ -545,7 +557,7 @@ $teamsToRank = $settings->teamsToRank($division);
 		<h1><?php echo $division.' '.$eventName;?></h1>
 		<h2 id="locked"></h2>
 		<h2 id="saved"></h2>
-		
+		<p id="connection"></p>
 		<h3>Event Supervisors, enter your scores, they will be saved automatically.
 		Once ALL of your scores are in hit save and submit, then report to score counseling</h3>
 		<ul>
