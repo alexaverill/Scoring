@@ -552,6 +552,9 @@ $teamsToRank = $settings->teamsToRank($division);
 		    <li>Ranking: <?php echo $rankType?></li>
 		    <li>1st in tie recieves more favorable rank</li>
 		    <li>Tier 1 receives more favorable rank</li>
+		    <li>Uses P to designate a participation points only team</li>
+		    <li>Use NS to designate a No Show team</li>
+		    <li>Use DQ to designate a disqualified team</li>
 		</ul>
 		<div class="table-responsive">
 		<table  class="table table-bordered table-condensed">
