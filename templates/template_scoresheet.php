@@ -40,12 +40,11 @@ $teamsToRank = $settings->teamsToRank($division);
  */
 -->
 
-<html>
+<html manifest="scores.manifest">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>Score Sheet</title>
-		<script type="text/javascript" src="jquery-2.1.1.min.js
-		"></script>
+		<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
 
 
 	<!--	<script src="editablegrid-2.0.1.js"></script>
