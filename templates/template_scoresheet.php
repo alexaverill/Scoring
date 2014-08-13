@@ -498,6 +498,9 @@ $teamsToRank = $settings->teamsToRank($division);
 				    document.getElementById(warningLocation).className="alert alert-success";
 				    document.getElementById(warningLocation).innerHTML = "Connection Restored, data saved.";
 				    ranking();
+				}else{
+				    document.getElementById(warningLocation).className="";
+				    document.getElementById(warningLocation).innerHTML = "";
 				}
 				connection = true;
 				return true;
