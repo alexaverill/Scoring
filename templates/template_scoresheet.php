@@ -69,6 +69,7 @@ $teamsToRank = $settings->teamsToRank($division);
 			var teams_participating = 0;
                         var eventName = <?php echo '"'.$eventName.'"';?>;
 			var teamsToRank = <?php echo $teamsToRank; ?>;
+			var connection = true;
 			//var teamsToRank = 3;
 			// [[row,score,tier,tieplace,tie]]
 			//for x<max totalPlacement.push([])
@@ -108,9 +109,10 @@ $teamsToRank = $settings->teamsToRank($division);
 				}
 			
 			function saveScores(){
+			    //saves scores into localStorage, removed option to save to database, really not needed?
 				localStorage.setItem(eventName, JSON.stringify(totalPlacement));
 				//send raw scores across to be stored.
-				$.ajax({
+				/*$.ajax({
 					type: "POST",
 					url: "bridges/save.php",
 					data: { event: eventName, scores: JSON.stringify(totalPlacement)  }
@@ -120,7 +122,7 @@ $teamsToRank = $settings->teamsToRank($division);
 					    document.getElementById('locked').innerHTML = 'This Event has been submitted, and is now Locked';
 					
 					}
-					});
+					});*/
 				
 			}
 			function loadScores() {
@@ -339,30 +341,7 @@ $teamsToRank = $settings->teamsToRank($division);
 						    placeInTie = finalPlacement[y][4];
 						    save_score_to_cell(finalPlacement[y][1],name,placeInTie,placeValue,finalPlacement[y][2]);
 						}
-						
-						/*saveIndex = y;
-						score = finalPlacement[y][1];
-						moveIn = y;
-						tempArray = [];
-						move = true;
-						while (move) {
-						    if (finalPlacment[moveIn][3]==1 && score == finalPlacement[moveIn][1]) {
-							tempArray.push(finalPlacement[moveIn]);
-						    }else{
-							break; //we have left the score chunk
-						    }
-						    moveIn ++;
-						}
-						//now that we have a temp array lets sort it, and then readd it into the original
-						tempArray.sort(compareTies);
-						//length to cut out then readd
-						cutArea = moveIn - saveIndex;
-						totalPlacement.splice(saveIndex,cutArea,tempArray)
-						*/
-						//totalPlacement[rowLocal-1][3] = 1;
-						
-						
-						
+
 					}
 					
 					
@@ -489,6 +468,7 @@ $teamsToRank = $settings->teamsToRank($division);
 			window.onload = function() {
 				//see if local storage has a scores array
 				//alert(checkNetConnection();
+				checkConnection();
 				if (localStorage.getItem(eventName)) {
 					loadScores();
 					update_scores();
@@ -505,13 +485,22 @@ $teamsToRank = $settings->teamsToRank($division);
 				}
 			}
 			function checkConnection(){
-			    //connectionStatus = checkNetConnection();
-			    connectionStatus = false;
+			    connectionStatus = checkNetConnection();
+			    //connectionStatus = false;
 			    warningLocation = "connection";
 			    if (!connectionStatus) {
 				document.getElementById(warningLocation).className="bg-danger";
+				document.getElementById(warningLocation).innerHTML = "Currently operating without a connection";
+				connection = false;
+				return false;
 			    }else{
-				document.getElementById(warningLocation).className="";
+				document.getElementById(warningLocation).className="bg-danger";
+				document.getElementById(warningLocation).innerHTML = "Connection Restored, data saved.";
+				if (!connection) {
+				    ranking();
+				}
+				connection = true;
+				return true;
 			    }
 			}
 			function checkNetConnection(){
@@ -531,15 +520,15 @@ $teamsToRank = $settings->teamsToRank($division);
 			    }
 			}
 			 $(document).on("change",'.score', function() {
-			    newScore = $(this).val();
-					checkConnection();
-					update_scores(newScore);
-					saveScores();
+				newScore = $(this).val();
+				checkConnection();
+				update_scores(newScore);
+				saveScores();
 			 });
 			  $(document).on("change",'.tiers', function() {
-					checkConnection();
-					update_scores();
-					saveScores();
+				checkConnection();
+				update_scores();
+				saveScores();
 			 });
 			 $(document).on("change",'.ties', function() {
 				checkConnection();
