@@ -1,0 +1,9 @@
+CACHE MANIFEST
+scores.php
+templates/template_scoresheet.php
+source/parts.css
+source/table.css
+source/jquery.jeditable.js
+source/jquery-2.1.1.min.js
+source/bootstrap/css/bootstrap.css
+source/bootstrap/js/bootstrap.min.js
