@@ -1,6 +1,28 @@
+<html>
+	<head>
+		<script type="text/javascript" src="source/jquery-2.1.1.min.js"></script>
+		<script src="source/jquery.jeditable.js" type="text/javascript"></script>
+				<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="source/bootstrap/css/bootstrap.css">
+		<!-- Extra Themes -->
+		<link rel="stylesheet" href="source/parts.css">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="source/bootstrap/js/bootstrap.min.js"></script>
+		<script src="source/editing.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Score Sheet</title>
+		<script type="text/javascript" src="source/jquery-2.1.1.min.js"></script>
+		
+	</head>
+	
+	<body>
+	
 <?php
 include('header.php');
 include('nav.php');
+?>
+<div class="class="container-fluid">
+<?php
 $user = new user;
 $permissions = $user->return_permissions($_SESSION['id']);
 

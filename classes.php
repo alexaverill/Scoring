@@ -1,6 +1,13 @@
 <?php
 class scores {
-    
+    public function return_scores($event){
+	global $dbh;
+	$sql = "SELECT * FROM scores WHERE eventName=?";
+	$scores = $dbh->prepare($sql);
+	$scores->execute(array($event));
+	$scores = $scores->fetchAll();
+	return $scores;
+    }
 }
 class user {
     public function login($user,$password){
@@ -366,6 +373,7 @@ class display{
         $teams = $teams->fetchAll();
         return $teams;
     }
+    
     public function return_teams_sorted($division){
         global $dbh;
         $sql = "SELECT * FROM teams WHERE division =? ORDER BY rank ASC";

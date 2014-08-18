@@ -20,39 +20,10 @@ if($_POST['update']){
     $userID = $_POST['userID'];
     $user->update_permissions($userID,$input);
 }
+$user = new user;
+$events = new events;
+$UserList = $user->return_users(3);
+$eventsB= $events->return_events(1,'B');
+$eventsC= $events->return_events(1,'C');
+echo $twig->render('adminUsers.html',array('UserList'=>$UserList,'EventListB'=>$eventsB,'EventListC'=>$eventsC));
 ?>
-<div class="row">
- <div class="col-md-6">
-<h2>Administrators</h2>
-<h3>Add Administrator</h3>
-<form method="POST" action="" class="form-horizontal" role="form">
-    Username:<input type="text" class="form-control" name="adminName"/><br/>
-    Password: <input type="text" class="form-control" name="adminPass"/><br/>
-    <input type="submit" value="Add Administrator" class="btn btn-primary" name="admin"/>
-</form>
-<h3>Current Administrators</h3>
-<?php $dis = new display; echo $dis->list_admins();?>
-   </div> <div class="col-md-6">
-<h2>Score Counselor</h2>
-<h3>Add Score Counselor</h3>
-<form method="POST" action="" class="form-horizontal" role="form">
-    Username:<input type="text"  class="form-control" name="scoreName"/><br/>
-    Password: <input type="text" class="form-control" name="scorePass"/><br/>
-    <input type="submit" value="Add Score Couselor" class="btn btn-primary" name="score" />
-</form>
-<h3> Current Score Counselors</h3>
-<?php $dis = new display; echo $dis->list_counselors();?>
-   </div>
-</div>
-   
-   <div class="">
-<h2>Event Supervisors</h2>
-<h3>Add Event Supervisor</h3>
-<form method="POST" action="" class="form-horizontal" role="form">
-    Username:<input type="text" class="form-control" name="supName"/><br/>
-    Password: <input type="text" class="form-control" name="supPass"/><br/>
-    <input type="submit" value="Add Event Supervisor" class="btn btn-primary" name="event"/>
-</form>
-<h3>Current Event Supervisors</h3>
-<?php $dis = new display; echo $dis->event_sup_table();?>
-  </div>
