@@ -1,6 +1,5 @@
 <?php
 include('header.php');
-include('nav.php');
 $user = new user;
 $display = new display;
 $permissions = $user->return_permissions($_SESSION['id']);
