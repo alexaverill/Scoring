@@ -1,10 +1,3 @@
-<?php include('header.php');
-include('nav.php');
-if($_POST['login']){
-	$user = new user;
-	$user->login($_POST['user'],$_POST['pass']);
-}
-?>
 <html>
 	<head>
 		<script type="text/javascript" src="source/jquery-2.1.1.min.js"></script>
@@ -23,7 +16,32 @@ if($_POST['login']){
 	</head>
 	
 	<body>
-		
+<?php include('header.php');
+//include('nav.php');
+if($_POST['login']){
+	$user = new user;
+	$user->login($_POST['user'],$_POST['pass']);
+}
+?>
+    <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.php">Score Sheet</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+<li class="active"><a href="login.php">Please Login</a></li>
+	          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+      <div class="container">	
 	<div class="class="container-fluid">
 <h1>Login</h1>
 		<div class="user_info">
