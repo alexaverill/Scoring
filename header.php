@@ -5,8 +5,10 @@ Twig_Autoloader::register();
 
 $loader = new Twig_Loader_Filesystem('./templates');
 $twig = new Twig_Environment($loader, array(
+    'debug' => true,
     
 ));
+$twig->addExtension(new Twig_Extension_Debug());
 if (version_compare(phpversion(), '5.5.0', '<')) {
     //If the php Version is not supporting password hash, lets include it
     require('source/lib/password.php');

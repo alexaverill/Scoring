@@ -1,6 +1,6 @@
 <?php
 include('header.php');
-include('nav.php');
+//include('nav.php');
 if($_SESSION['type']!=1){
     echo '<a href="login.php">Please Login</a>';
     die();
@@ -25,5 +25,7 @@ if($_POST['up']){
    $up = new uploads;
     $up->upload($_FILES['uploadedfile']['name'],$_FILES['uploadedfile']['tmp_name']);
 }
-echo $twig->render('adminTeam.html',array());
+$teamsB = $display->return_teams('B');
+$teamsC = $display->return_teams('C');
+echo $twig->render('adminTeam.html',array('TeamsRankB'=>$numRankB,'TeamsRankC'=>$numRankC,'TeamsC'=>$teamsC,'TeamsB'=>$teamsB,'MaxB'=>$numTeamsB,'MaxC'=>$numTeamsC));
 ?>

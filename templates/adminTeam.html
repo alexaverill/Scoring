@@ -16,6 +16,7 @@
 	</head>
 	
 	<body>
+		{%include 'adminNav.html' with {'page': 'team'}%}
 	<div class="class="container-fluid">
 		<h1>Teams</h1> 
 <form method="POST" action="" class="form-inline" role="form">
@@ -39,38 +40,53 @@
 <h3>Number of Teams to Rank B</h3>
 Leave this set to 0 to disable.
 <form method="POST" action="">
-   Suggested: <?php echo ceil($numTeamsB/2);  ?><br/>
+   Suggested: {{(MaxB/2)|round(0,'ceil')}}  <br/>
    <select name="numberB">
-      <?php
-      for($x=0;$x<=$numTeamsB; $x++){
-         if($x == $numRankB){
-            echo '<option value="'.$x.'" selected=selected>'.$x.'</option>';
-         }else{
-            echo '<option value="'.$x.'">'.$x.'</option>';
-         }
-      }
-      ?>
+      {%for i in 0..MaxB %}
+         {%if i == TeamsRankB %}
+            <option value="{{i}}" selected=selected>{{i}}</option>
+         {%else%}
+            <option value="{{i}}">{{i}}</option>
+         {%endif%}
+	 {%endfor%}
    </select>
    <input type="Submit" value="Update" name="udateTeamRankB"/>
 </form>
 <h3>Number of Teams to Rank C</h3>
 Leave this set to 0 to disable.
 <form method="POST" action="">
-   Suggested: <?php echo  ceil($numTeamsC/2); ?><br/>
+   Suggested: {{(MaxC/2)|round(0,'ceil')}}<br/>
    <select name="numberC">
       <?php
-      for($x=0;$x<=$numTeamsC; $x++){
-         if($x == $numRankC){
-            echo '<option value="'.$x.'" selected=selected>'.$x.'</option>';
-         }else{
-            echo '<option value="'.$x.'">'.$x.'</option>';
-         }
-      }
-      ?>
+      {%for i in 0..MaxC %}
+         {%if i == TeamsRankC %}
+            <option value="{{i}}" selected=selected>{{i}}</option>
+         {%else%}
+            <option value="{{i}}">{{i}}</option>
+         {%endif%}
+	 {%endfor%}
    </select>
    <input type="Submit" value="Update" name="udateTeamRankC"/>
 </form>
 <h3>Teams</h3>
-<?php
-    $display->table_of_teams();
-?>
+<table class="table table-striped table-bordered table-condensed table-hover"style="float:left; width:400px; margin-left: 30px;">
+	    <tr>
+		<th>B Teams</th>
+	    </tr>
+           {%for team in TeamsB%}
+                <tr>
+			<td><div style="display:inline" class="edit_number" id="{{team.teamNumber}}">{{team.teamNumber}}</div>
+               <div style="display:inline" class="edit_name" id="{{team.teamName}}">{{team.teamName}}</div></td></tr>
+            {%endfor%}
+	    
+           <table class="table table-striped table-bordered table-condensed table-hover" style="float:left; width:400px; margin-left: 30px;"><tr><th>C Teams</th></tr>';
+	    <tr>
+		<th>CTeams</th>
+	    </tr>
+           {%for team in TeamsC%}
+                <tr>
+			<td><div style="display:inline" class="edit_number" id="{{team.teamNumber}}">{{team.teamNumber}}</div>
+               <div style="display:inline" class="edit_name" id="{{team.teamName}}">{{team.teamName}}</div></td></tr>
+            {%endfor%}
+	    
+	    

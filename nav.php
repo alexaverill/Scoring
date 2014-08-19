@@ -59,32 +59,6 @@
             }else{
                echo '<li class="active"><a href="login.php">Please Login</a></li>';
             }
-            /*//quick hack to fix it for a demo, going to be tied into each user, and will be much cleaner.
-            if(strpos($actual_link,'index')){
-                echo '<li class="active"><a href="index.php">Main Page</a></li>';
-            }else{
-                echo '<li><a href="index.php">Main Page</a></li>';
-            }
-           if(strpos($actual_link,'admin')){
-            echo '<li class="active"><a href="admin.php">Admin Page</a></li>';
-            }else{
-                  echo '<li><a href="admin.php">Admin Page</a></li>';
-            }
-            if(strpos($actual_link,'scorecouncil')){
-            echo '<li class="active"><a href="scorecouncil.php">Score Counsler</a></li>';
-            }else{
-                 echo '<li><a href="scorecouncil.php">Score Counsler</a></li>';
-            }
-            if(strpos($actual_link,'events')){
-                echo '<li class="active"><a href="events.php">Event Supervisor</a></li>';
-            }else{
-                echo '<li><a href="events.php">Event Supervisor</a></li>';
-            }
-            /*if(strpos($actual_link,'final')){
-            echo '<li class="active"><a href="final.php">Final Scores</a></li>';
-            }else{
-                echo '<li><a href="final.php">Final Scores</a></li>';
-            }*/
             ?>
           </ul>
         </div><!--/.nav-collapse -->

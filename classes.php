@@ -215,6 +215,22 @@ class events{
         return $event[0]['scoreMethod'];
         
     }
+    public function resultsArray($division){
+	global $dbh;
+	$results = array();
+	$events = $this->return_events(1,$division);
+	//var_dump($events);
+	foreach($events as $event){
+	    //var_dump($event);
+	    $sql = "SELECT * FROM scores WHERE eventName=?";
+	    $get = $dbh->prepare($sql);
+	    $get->execute(array($event['eventName']));
+	    $array = $get->fetchAll();
+	   // var_dump($array);
+	    array_push($results,$array);
+	}
+	return $results;
+    }
 
 }
 class stats{
@@ -251,6 +267,13 @@ class settings{
     }
 }
 class display{
+    public function return_top(){
+	global $dbh;
+	$sql = "SELECT * FROM scores WHERE confirmedPlace < 4 AND confirmedPlace != 0 ORDER BY eventName ASC,confirmedPlace DESC";
+	$return = $dbh->query($sql);
+	$return = $return->fetchAll();
+	return $return;
+    }
     public function list_admins(){
 	$user = new user;
 	$list = $user->return_users(1);
