@@ -37,8 +37,17 @@ Select the number of results to display.
 </form>
 <div id="displayDiv">
 <ul>
+{%set event = ''%}
 {%for result in ResultsArray%}
-    <li>{{result.confirmedPlace}} - {{result.eventName}} - {{result.teamName}}</li>
+	{%if event == ''%}
+		{%set event=result.eventName%}
+		<h1>{{event}}</h1>
+	{%elseif event !=  result.eventName %}
+		{%set event = result.eventName%}
+		<h1>{{event}}</h1>
+	{%endif%}
+	
+    <li><h2>{{result.confirmedPlace}} - {{result.eventName}} - {{result.teamName}}</h2></li>
     
 {%endfor%}
 </div>
