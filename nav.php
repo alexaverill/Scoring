@@ -53,6 +53,7 @@
                      }else{
                    echo ' <li ><a href="final.php?division=C">Confirm C</a></li>';
                     }
+                    echo '<li><a href="admin_results.php">Award List</a></li>';
                     echo '<li ><a href="logout.php">Logout</a></li>';
                 } 
                 
