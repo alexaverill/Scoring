@@ -278,7 +278,7 @@ class settings{
 	$sql = "SELECT * FROM setting WHERE id=1";
 	$get = $dbh->query($sql);
 	$get = $get->fetchAll();
-	$number = $get['numberAwards'];
+	$number = $get[0]['numberAwards'];
 	return $number;
     }
 }

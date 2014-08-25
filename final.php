@@ -277,7 +277,8 @@ global $dbh;
                     <li class="active"><a href="final.php?division=C">Confirm C</a></li>
 	 <?php     }
 ?>
-                 <li ><a href="logout.php">Logout</a></li>
+                 <li ><a href="admin_results.php">Award List</a></li>
+		 <li ><a href="logout.php">Logout</a></li>
     
           </ul>
         </div><!--/.nav-collapse -->
