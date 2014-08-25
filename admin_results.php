@@ -7,8 +7,9 @@ if($_SESSION['type']!=1){
 }
 $display = new display;
 $events= new events;
+$settings = new settings;
 if($_POST['changeNumber']){
-    
+    $settings->changeAwards($_POST['number']);
 }
 $results = $display->return_top();
 //var_dump($results);

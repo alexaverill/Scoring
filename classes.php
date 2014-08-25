@@ -265,12 +265,28 @@ class settings{
 	$update->execute(array($number));
 	return true;
     }
+    public function changeAwards($number){
+	global $dbh;
+	$sql = "UPDATE settings SET numberAwards=? WHERE id=1";
+	$update = $dbh->prepare($sql);
+	$update->execute(array($number));
+	return true;
+    }
+    public function getAwards(){
+	global $dbh;
+	$sql = "SELECT * FROM settings WHERE id=1";
+	$results = $dbh->query($sql);
+	$results = $results->fetchAll();
+	$number = $results[0]['numberAwards'];
+	return $number;
+    }
 }
 class display{
-    public function return_top(){
+    public function return_top($number){
 	global $dbh;
-	$sql = "SELECT * FROM scores WHERE confirmedPlace < 4 AND confirmedPlace != 0 ORDER BY eventName ASC,confirmedPlace DESC";
-	$return = $dbh->query($sql);
+	$sql = "SELECT * FROM scores WHERE confirmedPlace < ? AND confirmedPlace != 0 ORDER BY eventName ASC,confirmedPlace DESC";
+	$return = $dbh->prepare($sql);
+	$return->execute(array($number));
 	$return = $return->fetchAll();
 	return $return;
     }
