@@ -12,7 +12,7 @@ if($_POST['changeNumber']){
     $settings->changeAwards($_POST['number']);
 }
 $resultsNum = $settings->getAwards();
-echo $resultsNum
+echo $resultsNum;
 $results = $display->return_top($resultsNum);
 //var_dump($results);
 echo $twig->render('adminResults.html',array('ResultsArray'=>$results));
