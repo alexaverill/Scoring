@@ -15,5 +15,5 @@ $resultsNum = $settings->getAwards();
 echo $resultsNum;
 $results = $display->return_top($resultsNum);
 //var_dump($results);
-echo $twig->render('adminResults.html',array('ResultsArray'=>$results));
+echo $twig->render('adminResults.html',array('ResultsArray'=>$results,'NumberAwards'=>$resultsNum));
 ?>
