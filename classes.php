@@ -274,10 +274,11 @@ class settings{
     }
     public function getAwards(){
 	global $dbh;
-	$sql = "SELECT * FROM settings WHERE id=1";
-	$results = $dbh->query($sql);
-	$results = $results->fetchAll();
-	$number = $results[0]['numberAwards'];
+
+	$sql = "SELECT * FROM setting WHERE id=1";
+	$get = $dbh->query($sql);
+	$get = $get->fetchAll();
+	$number = $get[0]['numberAwards'];
 	return $number;
     }
 }
