@@ -324,7 +324,6 @@ foreach($teams as $team){
     
 ?>
 
-
 </table>
 <button onclick="submitRank()" class="btn btn-primary">Confirm Scores</button>
 <div id="status"></div>
