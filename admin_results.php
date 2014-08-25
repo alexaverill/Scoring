@@ -12,7 +12,6 @@ if($_POST['changeNumber']){
     $settings->changeAwards($_POST['number']);
 }
 $resultsNum = $settings->getAwards();
-echo $resultsNum;
 $rationalNum = $resultsNum+1;
 $results = $display->return_top($rationalNum);
 //var_dump($results);
