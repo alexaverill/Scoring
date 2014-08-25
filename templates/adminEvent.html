@@ -129,7 +129,7 @@
 		{%if event.completed == 1%}
 			Submitted by Event Supervisor<br/>
 			<form method=Post action= >
-				<input type=hidden value=$eventName name=eventName />
+				<input type=hidden value="{{event.eventName}}" name="eventName" />
 				<input type=submit value=Unlock name=unlock>
 			</form>
 		{%else%}
@@ -139,6 +139,10 @@
 		<td>
 		{%if event.confirmed == 1%}
 			Score Counselor has confirmed
+				<form method=Post action= >
+				<input type=hidden value="{{event.eventName}}" name="eventName" />
+				<input type=submit value="Clear Confimation" name=adminunlock>
+			</form>
 		{%else%}
 			Not Yet Confirmed
 		{%endif%}

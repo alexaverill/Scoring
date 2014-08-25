@@ -153,6 +153,17 @@ class events{
         $un = $dbh->prepare($unlockEvents);
         $un->execute(array($event));
     }
+    public function adminUnlock($event){
+	global $dbh;
+        //Unlock scores table first.
+        $unlockEventSup = "UPDATE scores SET confirmed=0, locked=0,confirmedPlace=0,confirmedScore=0 WHERE eventName=?";
+        $unlock = $dbh->prepare($unlockEventSup);
+        $unlock->execute(array($event));
+        //unlock event table
+        $unlockEvents = "UPDATE events SET completed=0,confirmed=0 WHERE eventName=?";
+        $un = $dbh->prepare($unlockEvents);
+        $un->execute(array($event));
+    }
     public function number_events($type){
         global $dbh;
         if($type==1){

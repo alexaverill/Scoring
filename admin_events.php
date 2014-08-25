@@ -28,6 +28,9 @@ if($_POST['add']){
 if($_POST['unlock']){
     $events->unlock($_POST['eventName']);
 }
+if($_POST['adminunlock']){
+    $events->adminUnlock($_POST['eventName']);
+}
 $EventClass = new events;
 $eventsB = $EventClass->return_events(3,'B');
 $eventsC = $EventClass->return_events(3,'C');
