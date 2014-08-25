@@ -267,7 +267,7 @@ class settings{
     }
     public function changeAwards($number){
 	global $dbh;
-	$sql = "UPDATE settings SET numberAwards=? WHERE id=1";
+	$sql = "UPDATE setting SET numberAwards=? WHERE id=1";
 	$update = $dbh->prepare($sql);
 	$update->execute(array($number));
 	return true;
