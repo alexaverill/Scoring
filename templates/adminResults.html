@@ -40,6 +40,8 @@ Select the number of results to display.
 	{%if event == ''%}
 		{%set event=result.eventName%}
 		<h1>{{event}}</h1>
+				<div class="page-break"></div>
+
 	{%elseif event !=  result.eventName %}
 		{%set event = result.eventName%}
 		<div class="page-break"></div>
