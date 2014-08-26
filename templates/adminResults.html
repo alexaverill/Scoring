@@ -18,7 +18,7 @@
 	<body>
 		{%include 'adminNav.html' with {'page': 'team'}%}
 	<div class="class="container-fluid">
-<h3>Number to display?</h3>
+<div class="no-print"></div><h3>Number to display?</h3>
 Select the number of results to display. 
 <form method="POST" action="">
     Number:<select name="number">
@@ -32,6 +32,7 @@ Select the number of results to display.
     </select>
     <input type="submit" name="changeNumber" value="Select Number"/>
 </form>
+	</div>
 <div id="displayDiv">
 <ul class="list-unstyled">
 {%set event = ''%}
@@ -41,6 +42,7 @@ Select the number of results to display.
 		<h1>{{event}}</h1>
 	{%elseif event !=  result.eventName %}
 		{%set event = result.eventName%}
+		<div class="page-break"></div>
 		<h1>{{event}}</h1>
 	{%endif%}
 	
