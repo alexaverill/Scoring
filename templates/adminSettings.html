@@ -27,6 +27,9 @@
 				<option value="1" selected=selected>Yes</option>
 				{%endif%}
 			</select>
+			<input type="submit" value="Update" name="resultsDis"/>
+		</form>
+		<form method="POST">
 			Display Statistics on Public Results:
 			<select name="publicStats">
 				{%if DiplayStats == 0%}
@@ -37,4 +40,5 @@
 				<option value="1" selected=selected>Yes</option>
 				{%endif%}
 			</select>
+			<input type="submit" value="Update" name="statsDis"/>
 		</form>
