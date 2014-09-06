@@ -300,6 +300,13 @@ class settings{
 	$number = $get[0]['resultsDisplay'];
 	return $number;
     }
+    public function updateDisplaySetting($number)
+    	global $dbh;
+	$sql = "UPDATE setting SET resultsDisplay=? WHERE id=1";
+	$update = $dbh->prepare($sql);
+	$update->execute(array($number));
+	return true;
+    }
     public function returnStatsSetting(){
 	global $dbh;
 	$sql = "SELECT * FROM setting WHERE id=1";
@@ -307,6 +314,13 @@ class settings{
 	$get = $get->fetchAll();
 	$number = $get[0]['statsDisplay'];
 	return $number;
+    }
+    public function updateStatsSetting($number){
+    	global $dbh;
+	$sql = "UPDATE setting SET statsDisplay=? WHERE id=1";
+	$update = $dbh->prepare($sql);
+	$update->execute(array($number));
+	return true;
     }
 }
 class display{
