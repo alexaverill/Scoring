@@ -25,11 +25,14 @@ $numTeams = $display->number_teams($division);
 $listEvents = $events->return_events(1,$division);
 $open = $settings->returnResultsDisplaySettings();
 global $dbh;
+
+?>
+<?php include('nav.php');
 if($open !=1){
-       Echo '<h1>Results have not been made public yet, please check back later</h1>';
+       Echo '<h1>Results have not been made public yet, please check back later</h1>'
+       die();
 }
 ?>
-<?php include('nav.php');?>
               
 <h1>B Division</h1><table  class="table table-striped table-condensed table-hover table-header-rotated"><thead><tr><th>Teams:</th>
 <?php
