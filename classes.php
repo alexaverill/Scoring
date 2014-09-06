@@ -300,7 +300,7 @@ class settings{
 	$number = $get[0]['resultsDisplay'];
 	return $number;
     }
-    public function updateDisplaySetting($number)
+    public function updateDisplaySetting($number){
     	global $dbh;
 	$sql = "UPDATE setting SET resultsDisplay=? WHERE id=1";
 	$update = $dbh->prepare($sql);
