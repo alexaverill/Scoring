@@ -278,6 +278,7 @@ global $dbh;
 	 <?php     }
 ?>
                  <li ><a href="admin_results.php">Award List</a></li>
+		 <li ><a href="adminSettings.php">Results Settings</a></li>
 		 <li ><a href="logout.php">Logout</a></li>
     
           </ul>
