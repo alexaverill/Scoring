@@ -293,6 +293,7 @@ class settings{
 	return $number;
     }
     public function returnResultsDisplaySettings(){
+	global $dbh;
 	$sql = "SELECT * FROM setting WHERE id=1";
 	$get = $dbh->query($sql);
 	$get = $get->fetchAll();
@@ -300,6 +301,7 @@ class settings{
 	return $number;
     }
     public function returnStatsSetting(){
+	global $dbh;
 	$sql = "SELECT * FROM setting WHERE id=1";
 	$get = $dbh->query($sql);
 	$get = $get->fetchAll();
