@@ -91,7 +91,20 @@ class uploads{
 	}
 	
 	
+    }
+    public function uploadES($name,$tmpName){						//Upload function for admin area excel files
+	$target_path = "uploads/";
+	$target_path = $target_path . basename($name); 
+	if(move_uploaded_file($tmpName, $target_path)) {
+	    //Moved file, no response due to trying to keep admin area simple
+	    echo 'File moved to:'.$target_path;
+	    $this->insertEventSups($target_path);
+	} else{
+	    echo "There was an error uploading the file, please try again!";
 	}
+	
+	
+    }
     public function insertEventSups($location){
 	global $dbh;
 	include('source/reader.php');

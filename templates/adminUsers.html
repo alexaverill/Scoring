@@ -60,6 +60,14 @@
     Password: <input type="text" class="form-control" name="supPass"/><br/>
     <input type="submit" value="Add Event Supervisor" class="btn btn-primary" name="event"/>
 </form>
+           <h3>Upload Teams</h3>
+        <b>Your Excel (.xls) should look like <a href="source/exampleES.xls">this</a></b> 
+        <br/><br/>
+        <form enctype="multipart/form-data" action="" method="POST">
+            <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
+            Choose a sheet to upload: <input name="uploadedfile" id="file" type="file" /><br/>
+            <input type="submit" name="up" class="btn btn-primary" value="Upload File" />
+        </form>
 <h3>Current Event Supervisors Logins</h3>
 	<h1>B Division</h1>
 	<table  class="table table-striped table-condensed table-hover table-header-rotated">

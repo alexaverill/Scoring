@@ -20,6 +20,10 @@ if($_POST['update']){
     $userID = $_POST['userID'];
     $user->update_permissions($userID,$input);
 }
+if($_POST['up']){
+   $up = new uploads;
+    $up->uploadES($_FILES['uploadedfile']['name'],$_FILES['uploadedfile']['tmp_name']);
+}
 $user = new user;
 $events = new events;
 $UserList = $user->return_users(3);
