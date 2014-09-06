@@ -29,5 +29,7 @@ $events = new events;
 $UserList = $user->return_users(3);
 $eventsB= $events->return_events(1,'B');
 $eventsC= $events->return_events(1,'C');
-echo $twig->render('adminUsers.html',array('UserList'=>$UserList,'EventListB'=>$eventsB,'EventListC'=>$eventsC));
+$counselors = $user->return_users(2);
+$admins = $user->return_users(1);
+echo $twig->render('adminUsers.html',array('UserList'=>$UserList,'EventListB'=>$eventsB,'EventListC'=>$eventsC,'CounselorList'=>$counselors,'AdminList'=>$admins));
 ?>
