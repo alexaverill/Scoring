@@ -18,17 +18,22 @@
 include('header.php');
 $display = new display();
 $events = new events();
+$settings = new settings();
 $division = 'B';
 $teams = $display->return_teams_sorted($division);
 $numTeams = $display->number_teams($division);
 $listEvents = $events->return_events(1,$division);
+$open = $settings->returnResultsDisplaySettings();
 global $dbh;
-
+if($open !=1){
+       Echo '<h1>Results have not been made public yet, please check back later</h1>';
+}
 ?>
 <?php include('nav.php');?>
               
 <h1>B Division</h1><table  class="table table-striped table-condensed table-hover table-header-rotated"><thead><tr><th>Teams:</th>
 <?php
+
 foreach($listEvents as $event){
        echo '<th class="rotate-45"><div><span>'.$event['eventName'].'</span></div></th>';
     }
