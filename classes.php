@@ -92,8 +92,41 @@ class uploads{
 	
 	
 	}
-    public function insertEventSups(){
-	
+    public function insertEventSups($location){
+	global $dbh;
+	include('source/reader.php');
+	$data = new Spreadsheet_Excel_Reader();
+	$data->setOutputEncoding('CP1251');
+	$data->read($location);
+		for ($x = 2; $x <= count($data->sheets[0]["cells"]); $x++) {
+		    $username = $data->sheets[0]["cells"][$x][1]; //a
+		    $password = $data->sheets[0]["cells"][$x][2];//b
+		    $event = $data->sheets[0]["cells"][$x][3];//c
+		
+			
+			$check = "SELECT * FROM users WHERE name=?"; //$name
+		$qry = $dbh->prepare($check);
+		$qry->execute(array($teamName));
+		$num_rows = $qry->rowCount();
+		$event = new $events;
+		$perms = $event->getEventId($event);
+		if ($num_rows > 0) {
+		    $addPerms = $qry->fetchAll();
+		    $addPerms[0]['permissions'];
+		    $addPerms .=','.$perms;
+		    $sql = "UPDATE users SET permissions=? WHERE name=?";
+		    $update = $dbh->prepare($sql);
+		    $update->execute(array($addPerms,$username));
+			//just add event name.
+		}else{
+		    $sql = "INSERT INTO users (name,password,permissions) VALUES (?,?,?)";
+		    $add=$dbh->prepare($sql);
+		    $add->execute(array($username,$password,$perms));
+		}
+		unlink($location);
+		echo 'Your file has been input into the database. Thank you.';
+	}
+	}
     }
     public function insert($location){			//Addes uploaded Excel file data to database
 	global $dbh;
@@ -245,7 +278,15 @@ class events{
 	}
 	return $results;
     }
-
+    public function getEventId($eventname){
+        global $dbh;
+        $sql = "SELECT * FROM events WHERE eventName =?";
+        $eventname = $dbh->prepare($sql);
+        $eventname->execute(array($id));
+        $event = $eventname->fetchAll(); 
+        return $event[0]['id'];
+        
+    }
 }
 class stats{
     public function numberCompleted(){
