@@ -127,7 +127,7 @@ class uploads{
 		echo 'Your file has been input into the database. Thank you.';
 	}
 	}
-    }
+    
     public function insert($location){			//Addes uploaded Excel file data to database
 	global $dbh;
 	include('source/reader.php');
