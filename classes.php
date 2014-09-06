@@ -92,6 +92,9 @@ class uploads{
 	
 	
 	}
+    public function insertEventSups(){
+	
+    }
     public function insert($location){			//Addes uploaded Excel file data to database
 	global $dbh;
 	include('source/reader.php');
