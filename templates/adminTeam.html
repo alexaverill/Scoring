@@ -41,6 +41,7 @@
 Leave this set to 0 to disable.
 <form method="POST" action="">
    Suggested: {{(MaxB/2)|round(0,'ceil')}}  <br/>
+   Current Teams to Rank: {{TeamsRankB}}<br/>
    <select name="numberB">
       {%for i in 0..MaxB %}
          {%if i == TeamsRankB %}
@@ -56,6 +57,7 @@ Leave this set to 0 to disable.
 Leave this set to 0 to disable.
 <form method="POST" action="">
    Suggested: {{(MaxC/2)|round(0,'ceil')}}<br/>
+   urrent Teams to Rank: {{TeamsRankC}}<br/>
    <select name="numberC">
       <?php
       {%for i in 0..MaxC %}
