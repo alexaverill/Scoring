@@ -29,7 +29,7 @@ global $dbh;
 ?>
 <?php include('nav.php');
 if($open !=1){
-       Echo '<h1>Results have not been made public yet, please check back later</h1>'
+       Echo '<h1>Results have not been made public yet, please check back later</h1>';
        die();
 }
 ?>
