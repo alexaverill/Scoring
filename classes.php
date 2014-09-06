@@ -292,6 +292,20 @@ class settings{
 	$number = $get[0]['numberAwards'];
 	return $number;
     }
+    public function returnResultsDisplaySettings(){
+	$sql = "SELECT * FROM setting WHERE id=1";
+	$get = $dbh->query($sql);
+	$get = $get->fetchAll();
+	$number = $get[0]['resultsDisplay'];
+	return $number;
+    }
+    public function returnStatsSetting(){
+	$sql = "SELECT * FROM setting WHERE id=1";
+	$get = $dbh->query($sql);
+	$get = $get->fetchAll();
+	$number = $get[0]['statsDisplay'];
+	return $number;
+    }
 }
 class display{
     public function return_top($number){
