@@ -55,6 +55,7 @@
                     }
                     echo '<li><a href="admin_results.php">Award List</a></li>';
                    echo ' <li ><a href="adminSettings.php">Results Settings</a></li>';
+                   echo '<li> <a href="results.php">Results</a></li>';
                     echo '<li ><a href="logout.php">Logout</a></li>';
                 } 
                 
