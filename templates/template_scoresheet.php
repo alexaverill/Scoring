@@ -409,14 +409,8 @@ $teamsToRank = $settings->teamsToRank($division);
 					
 					if (parseFloat(theScore) != 0) {
 						totalPlacement[x-1][1] = theScore;
+						totalPlacement[x-1][3] = 0;
 					}
-					/*isTie = check_all_ties(totalPlacement[x-1][1],x-1,totalPlacement[x-1][2]);
-					if (isTie) {
-						if (document.getElementById(x+'ties')) {
-							totalPlacement[x-1][3] = document.getElementById(x+'ties').value;
-						}
-						
-					}*/
 				}
 				saveScores();
 				ranking();
