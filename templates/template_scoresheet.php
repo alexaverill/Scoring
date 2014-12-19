@@ -285,7 +285,7 @@ $teamsToRank = $settings->teamsToRank($division);
 					    //in tie and not tie broken
 						tieDialoglocat = rowLocal +"tie";
 						row = 'R'+rowLocal;
-						 if (finalPlacement[y][4] == 0 && finalPlacement[y][3] == 1) {
+						 if (finalPlacement[y][4] == 0) {
 						    htmlString ='Place in Tie:<select name="'+rowLocal+'" id="'+rowLocal+'tieselect"class=ties><option></option>';
 						    for(v=1;v<=max;v++){
 							if (finalPlacement[y][4] == v) {
@@ -361,22 +361,38 @@ $teamsToRank = $settings->teamsToRank($division);
 						currentScores.push(theScore);
 						currentTiers.push(theTier);
 					}
+				    
 					//console.log(currentScores);
 					firstIndex = currentScores.indexOf(value);
 					lastIndex = currentScores.lastIndexOf(value);
 					if (value == 0 || value == 'P' || value == 'DQ' || value == 'NS' ) {
 						return false;
-					}else if ( firstIndex == lastIndex ) {
+					if ( firstIndex == lastIndex ) {
 						//if it is the same value it cannot be a tie
 						return false;
-						
-					}else if(currentTiers[firstIndex] == currentTiers[lastIndex]){
-						//make sure scores are in the same tier, otherwise it wont be a tie.
-						totalPlacement[firstIndex][3] = 1;
-						totalPlacement[lastIndex][3]=1;
-						return true;
 					}
-					return false;
+					outer=0;
+					returnVal = false;
+					while(outer<=currentScores.length){
+					    if (test) {
+						//code
+					    }
+						inner = 1
+						while(inner<currentScores.length){
+						    if (currentScores[outer] == currentScores[inner]) {
+							//the scores are the same which means we could have a tie
+							if (currentTiers[outer] == currentTiers[inner]) {
+							    // the tiers are the same so we have a tie
+							    totalPlacement[inner][3] = 1;
+							    totalPlacement[outer][3]=1;
+							    returnVal = true;
+							}
+						    }
+						    inner++;
+						}
+					    outer++;
+					}
+					return returnVal;
 				}
 			function updateTie(locationchange,placeInTie){
 				//get scoere
