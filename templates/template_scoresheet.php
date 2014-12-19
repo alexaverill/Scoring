@@ -241,6 +241,7 @@ $teamsToRank = $settings->teamsToRank($division);
 					rowLocal = finalPlacement[y][0];
 					//tie = check_tie(x);
 					tie = check_all_ties(finalPlacement[y][1],finalPlacement[y][2]);
+					tie = check_all_ties(finalPlacement[y][1],finalPlacement[y][2]);
 					    if (teamsToRank == 0) {
 						if (finalPlacement[y][1] == "P") {
 						    placeValue = teams_participating+1; //have to increment to keep it correct
