@@ -363,7 +363,7 @@ $teamsToRank = $settings->teamsToRank($division);
 					}
 				    
 					console.log(currentScores);
-					console.log(curretTiers);
+					console.log(currentTiers);
 					firstIndex = currentScores.indexOf(value);
 					lastIndex = currentScores.lastIndexOf(value);
 					if (value == 0 || value == 'P' || value == 'DQ' || value == 'NS' ) {
