@@ -331,6 +331,8 @@
 						while(inner<currentScores.length){
 						    if (currentScores[outer] == currentScores[inner]) {
 							//the scores are the same which means we could have a tie
+							console.log(currentTiers[outer]);
+							console.log(currentTiers[inner]);
 							if (currentTiers[outer] == currentTiers[inner]) {
 							    // the tiers are the same so we have a tie
 							    totalPlacement[inner][3] = 1;
