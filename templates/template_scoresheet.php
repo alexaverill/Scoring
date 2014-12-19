@@ -362,7 +362,8 @@ $teamsToRank = $settings->teamsToRank($division);
 						currentTiers.push(theTier);
 					}
 				    
-					//console.log(currentScores);
+					console.log(currentScores);
+					console.log(curretTiers);
 					firstIndex = currentScores.indexOf(value);
 					lastIndex = currentScores.lastIndexOf(value);
 					if (value == 0 || value == 'P' || value == 'DQ' || value == 'NS' ) {
@@ -421,10 +422,10 @@ $teamsToRank = $settings->teamsToRank($division);
 					theScore = document.getElementById(scorelocation).value;
 					theTier = document.getElementById(tierlocal).value;
 					totalPlacement[x-1][2] = theTier;
-					
+					totalPlacement[x-1][3] = 0;
 					if (parseFloat(theScore) != 0) {
 						totalPlacement[x-1][1] = theScore;
-						totalPlacement[x-1][3] = 0;
+						
 					}
 				}
 				saveScores();
