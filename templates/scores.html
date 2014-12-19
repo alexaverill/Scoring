@@ -192,7 +192,7 @@
 					//check ties, if there is a tie skip and put in the ti
 					rowLocal = finalPlacement[y][0];
 					//tie = check_tie(x);
-					check_all_ties(finalPlacement[y][1],finalPlacement[y][2]);
+					tie = check_all_ties(finalPlacement[y][1],finalPlacement[y][2]);
 					if (teamsToRank == 0) {
 					    if (finalPlacement[y][1] == "P") {
 						placeValue = teams_participating+1; //have to increment to keep it correct
@@ -222,7 +222,7 @@
 
 					placeLocat = rowLocal+"place";
 					
-					if (finalPlacement[y][3] == 0) {
+					if (!tie) {
 					    
 						tieDialoglocat = rowLocal +"tie";
 						name = document.getElementById(finalPlacement[y][0]).innerHTML;
