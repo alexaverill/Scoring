@@ -31,7 +31,7 @@ if($rankType=='high'){
 $teams = $display->return_teams($division);
 $teamsToRank = $settings->teamsToRank($division);
 if(in_array($id,$permissions) || in_array(999,$permissions)){
-    echo $twig->render('scores.html',array('TeamList'=>$teams,'SortMethod'=>$numRankType,'NumberTeams'=>$numTeams,'EventName'=>$eventName,'TeamsToRank'=>$teamsToRank));
+    echo $twig->render('scores.html',array('TeamList'=>$teams,'SortMethod'=>$numRankType,'TextRank'=>$rankType,'NumberTeams'=>$numTeams,'EventName'=>$eventName,'TeamsToRank'=>$teamsToRank));
 }else{   
     echo 'You do not have permission to view that event.';
 }
