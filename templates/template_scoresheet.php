@@ -270,7 +270,7 @@ $teamsToRank = $settings->teamsToRank($division);
 
 					placeLocat = rowLocal+"place";
 					
-					if (!tie) {
+					if (!tie && (finalPlacement[y][3] != 3 || finalPlacement[y][4] !=0)) {
 					    
 						tieDialoglocat = rowLocal +"tie";
 						name = document.getElementById(finalPlacement[y][0]).innerHTML;
