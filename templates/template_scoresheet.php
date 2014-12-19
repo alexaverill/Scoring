@@ -367,6 +367,7 @@ $teamsToRank = $settings->teamsToRank($division);
 					lastIndex = currentScores.lastIndexOf(value);
 					if (value == 0 || value == 'P' || value == 'DQ' || value == 'NS' ) {
 						return false;
+					}
 					if ( firstIndex == lastIndex ) {
 						//if it is the same value it cannot be a tie
 						return false;
@@ -374,9 +375,6 @@ $teamsToRank = $settings->teamsToRank($division);
 					outer=0;
 					returnVal = false;
 					while(outer<=currentScores.length){
-					    if (test) {
-						//code
-					    }
 						inner = 1
 						while(inner<currentScores.length){
 						    if (currentScores[outer] == currentScores[inner]) {
@@ -394,6 +392,7 @@ $teamsToRank = $settings->teamsToRank($division);
 					}
 					return returnVal;
 				}
+			
 			function updateTie(locationchange,placeInTie){
 				//get scoere
 				//console.log(placeInTie)
