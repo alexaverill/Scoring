@@ -285,7 +285,7 @@ $teamsToRank = $settings->teamsToRank($division);
 					    //in tie and not tie broken
 						tieDialoglocat = rowLocal +"tie";
 						row = 'R'+rowLocal;
-						 if (finalPlacement[y][4] == 0 ) {
+						 if (finalPlacement[y][4] == 0 && finalPlacement[y][3] == 1) {
 						    htmlString ='Place in Tie:<select name="'+rowLocal+'" id="'+rowLocal+'tieselect"class=ties><option></option>';
 						    for(v=1;v<=max;v++){
 							if (finalPlacement[y][4] == v) {
