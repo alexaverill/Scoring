@@ -326,9 +326,11 @@
 					}
 					outer=0;
 					returnVal = false;
+					
 					while(outer<=currentScores.length){
 						inner = 1
 						while(inner<currentScores.length){
+							console.log(currentScores[outer] + currentScores[inner]);
 							if (currentTiers[outer] == currentTiers[inner]) {
 						   
 							//the scores are the same which means we could have a tie
