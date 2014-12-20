@@ -122,6 +122,7 @@
                                 var DQ = [];
                                 var P =[];
 				teams_participating = 0;
+				check_all_ties();
 				for (x=0; x<max; x++) {
 				    if (totalPlacement[x][1] != 0 && totalPlacement[x][1] != "") {
 					//update number of teams participating
@@ -159,6 +160,7 @@
 				    }
 					
 				}
+				
 				//sort based on teirs
 				one.sort(compareScores);
 				two.sort(compareScores);
@@ -192,7 +194,7 @@
 					//check ties, if there is a tie skip and put in the ti
 					rowLocal = finalPlacement[y][0];
 					//tie = check_tie(x);
-					tie = check_all_ties(finalPlacement[y][1],finalPlacement[y][2]);
+					//tie = check_all_ties(finalPlacement[y][1],finalPlacement[y][2]);
 					if (teamsToRank == 0) {
 					    if (finalPlacement[y][1] == "P") {
 						placeValue = teams_participating+1; //have to increment to keep it correct
@@ -222,7 +224,7 @@
 
 					placeLocat = rowLocal+"place";
 					console.log(tie);
-					if (!tie) {
+					if () {
 					    
 						tieDialoglocat = rowLocal +"tie";
 						name = document.getElementById(finalPlacement[y][0]).innerHTML;
@@ -300,7 +302,7 @@
 				saveScores();
 			
 			}
-				function check_all_ties(value,tier){
+				function check_all_ties(){
 					currentScores = [];
 					currentTiers = [];
 					
@@ -313,9 +315,7 @@
 						currentScores.push(theScore);
 						currentTiers.push(theTier);
 					}
-					console.log(currentScores);
-					console.log(currentTiers);
-					firstIndex = currentScores.indexOf(value);
+					/*firstIndex = currentScores.indexOf(value);
 					lastIndex = currentScores.lastIndexOf(value);
 					if (value == 0 || value == 'P' || value == 'DQ' || value == 'NS' ) {
 						return false;
@@ -330,12 +330,11 @@
 							totalPlacement[lastIndex][3]=1;
 							return true;
 						}
-					}
+					}*/
 					outer=0;
 					returnVal = false;
-					
-					/*while(outer<=currentScores.length){
-						inner = 1
+					while(outer<=currentScores.length){
+						inner = 1;
 						while(inner<currentScores.length){
 							console.log(currentScores[outer] + currentScores[inner]);
 							if (currentTiers[outer] == currentTiers[inner]) {
@@ -346,15 +345,17 @@
 								console.log(currentTiers[outer]);
 								console.log(currentTiers[inner]);
 							    // the tiers are the same so we have a tie
-							    totalPlacement[inner][3] = 1;
 							    totalPlacement[outer][3]=1;
-							    returnVal = true;
+							    //returnVal = true;
 							}
+						    }else{
+							totalPlacement[outer][3] = 0;
+							totalPlacement[outer][4] =0;
 						    }
 						    inner++;
 						}
 					    outer++;
-					}*/
+					}
 					return returnVal;
 				}
 			function updateTie(locationchange,placeInTie){
