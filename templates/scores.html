@@ -324,10 +324,17 @@
 						//if it is the same value it cannot be a tie
 						return false;
 					}
+					if (currentTiers[firstIndex] == currentTiers[lastIndex]) {
+						if(currentScores[firstIndex] == currentScores[lastIndex]){
+							totalPlacement[firstIndex][3] = 1;
+							totalPlacement[lastIndex][3]=1;
+							return true;
+						}
+					}
 					outer=0;
 					returnVal = false;
 					
-					while(outer<=currentScores.length){
+					/*while(outer<=currentScores.length){
 						inner = 1
 						while(inner<currentScores.length){
 							console.log(currentScores[outer] + currentScores[inner]);
@@ -347,7 +354,7 @@
 						    inner++;
 						}
 					    outer++;
-					}
+					}*/
 					return returnVal;
 				}
 			function updateTie(locationchange,placeInTie){
