@@ -329,10 +329,11 @@
 					while(outer<=currentScores.length){
 						inner = 1
 						while(inner<currentScores.length){
-						    if ((currentScores[outer] == currentScores[inner]) && currentScores[outer] != "") {
+							if (currentTiers[outer] == currentTiers[inner]) {
+						   
 							//the scores are the same which means we could have a tie
 							
-							if (currentTiers[outer] == currentTiers[inner]) {
+							 if ((currentScores[outer] == currentScores[inner]) && currentScores[outer] != "") {
 								console.log(currentTiers[outer]);
 								console.log(currentTiers[inner]);
 							    // the tiers are the same so we have a tie
