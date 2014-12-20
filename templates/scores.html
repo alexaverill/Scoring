@@ -307,14 +307,6 @@
 					currentTiers = [];
 					
 					//add scores to current List;
-					for(x=1; x<=max;x++){
-						scorelocation = x+"score";
-						tierlocal = x+"tier";
-						theScore = document.getElementById(scorelocation).value;
-						theTier = document.getElementById(tierlocal).value;
-						currentScores.push(theScore);
-						currentTiers.push(theTier);
-					}
 					/*firstIndex = currentScores.indexOf(value);
 					lastIndex = currentScores.lastIndexOf(value);
 					if (value == 0 || value == 'P' || value == 'DQ' || value == 'NS' ) {
@@ -333,17 +325,16 @@
 					}*/
 					outer=0;
 					returnVal = false;
-					while(outer<=currentScores.length){
+					while(outer<=totalPlacement.length){
 						inner = 1;
-						while(inner<currentScores.length){
-							console.log(currentScores[outer] + currentScores[inner]);
-							if (currentTiers[outer] == currentTiers[inner]) {
+						while(inner<totalPlacement.length){
+							if (totalPlacement[outer][2] == totalPlacement[inner][2]) {
 						   
 							//the scores are the same which means we could have a tie
 							
-							 if ((currentScores[outer] == currentScores[inner]) && currentScores[outer] != "") {
-								console.log(currentTiers[outer]);
-								console.log(currentTiers[inner]);
+							 if ((totalPlacement[outer][1] == totalPlacement[inner][1]) && totalPlacement[outer][1]!= "") {
+								//console.log(currentTiers[outer]);
+								//console.log(currentTiers[inner]);
 							    // the tiers are the same so we have a tie
 							    totalPlacement[outer][3]=1;
 							    //returnVal = true;
