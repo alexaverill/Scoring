@@ -223,7 +223,7 @@
 					}
 
 					placeLocat = rowLocal+"place";
-					console.log(tie);
+					//console.log(tie);
 					if (finalPlacement[y][3] == 0) {
 					    
 						tieDialoglocat = rowLocal +"tie";
@@ -253,7 +253,7 @@
 						    document.getElementById(placeLocat).innerHTML = "tie";
 						    name = document.getElementById(finalPlacement[y][0]).innerHTML;
 						    document.getElementById(row).className = 'red';
- 						    save_score_to_cell(finalPlacement[y][1],name,0,tie,finalPlacement[y][2]);
+ 						    save_score_to_cell(finalPlacement[y][1],name,0,0,finalPlacement[y][2]);
 						    
 						}else{
 						    //Tie and tie broken.
