@@ -46,8 +46,10 @@ Select the number of results to display.
 		<div class="page-break"></div>
 		<h1>{{event}}</h1>
 	{%endif%}
-	
-    <li><h2>{{result.confirmedPlace}} - {{result.teamName}}</h2></li>
+	<table>
+		<tr><td><h2>{{result.confirmedPlace}}</h2></td><td><h2>{{result.teamName}}</h2></td><td><h2>{{result.confirmedScore}}</h2></td></tr>
+	</table>
+    
     
 {%endfor%}
 </div>
