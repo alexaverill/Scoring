@@ -1,5 +1,8 @@
 <?php
 //INSTALL SCRIPT!
+//default Adming login:
+//Admin
+//321Scoring!
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -99,7 +102,6 @@ function insert_sql(){
     		or die ("Could not connect to mysql because ".mysql_error());
     	mysql_select_db($name_database)
     		or die ("Could not select database because ".mysql_error());
-    		$insert='SOURCE install.sql';
     $filename='install.sql';
     //$enter= mysqli_multi_query ($insert)or die(mysql_error());
     //mysql_select_db($mysql_database) or die('Error selecting MySQL database: ' . mysql_error());

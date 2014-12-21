@@ -538,7 +538,11 @@ class display{
         echo '<table class="table table-striped table-bordered table-condensed table-hover"
         style="float:left; width:400px; margin-left: 30px;"><tr><th>'.$division.' Division Events</th></tr>';
         foreach( $events as $event){
-            echo '<tr><td><a href='.$link.$event['id'].'>'.$event['division'].' '.$event['eventName'].'</a></td></tr>';
+	    if($event['confirmed']){
+		echo '<tr><td style="background-color:#B8BEFF"><a href='.$link.$event['id'].'>'.$event['division'].' '.$event['eventName'].'</a></td></tr>';
+	    }else{
+		echo '<tr><td><a href='.$link.$event['id'].'>'.$event['division'].' '.$event['eventName'].'</a></td></tr>';
+	    }
         }
         echo '</table>';
     }
