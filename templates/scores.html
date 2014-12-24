@@ -334,24 +334,25 @@
 					returnVal = false;
 					while(outer<totalPlacement.length){
 						inner = 1;
-						while(inner<totalPlacement.length){
-							if (totalPlacement[outer][2] == totalPlacement[inner][2]) {
-						   
-							//the scores are the same which means we could have a tie
-							 if ((totalPlacement[outer][1] == totalPlacement[inner][1]) &&
-							     (totalPlacement[outer][1] != "" || totalPlacement[outer][1] !='P' ||  totalPlacement[outer][1] !='DQ' ||  totalPlacement[outer][1] !='NS')&& outer != inner) {
-								//console.log(currentTiers[outer]);
-								//console.log(currentTiers[inner]);
-							    // the tiers are the same so we have a tie
-							    totalPlacement[outer][3]=1;
-							    totalPlacement[inner][3]=1; //needed to catch ties of only two
-							    //returnVal = true;
+						if ((totalPlacement[outer][1] == "" || totalPlacement[outer][1] =='P' ||  totalPlacement[outer][1] =='DQ' ||  totalPlacement[outer][1] =='NS')) {
+								totalPlacement[outer][3]=0;
+						}else{
+							while(inner<totalPlacement.length){
+								if (totalPlacement[outer][2] == totalPlacement[inner][2]) {
+							   
+								//the scores are the same which means we could have a tie
+								 if ((totalPlacement[outer][1] == totalPlacement[inner][1]) && outer != inner) {
+									totalPlacement[outer][3]=1;
+									totalPlacement[inner][3]=1; //needed to catch ties of only two
+								    }
+								    //returnVal = true;
+								}
+							    }else{
+								//totalPlacement[outer][3] = 0;
+								//totalPlacement[outer][4] =0;
+							    }
+							    inner++;
 							}
-						    }else{
-							//totalPlacement[outer][3] = 0;
-							//totalPlacement[outer][4] =0;
-						    }
-						    inner++;
 						}
 					    outer++;
 					}
