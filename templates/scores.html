@@ -338,9 +338,6 @@
 							if (totalPlacement[outer][2] == totalPlacement[inner][2]) {
 						   
 							//the scores are the same which means we could have a tie
-							if (value == 0 || value == 'P' || value == 'DQ' || value == 'NS' ) {
-								return false;
-							}
 							 if ((totalPlacement[outer][1] == totalPlacement[inner][1]) &&
 							     (totalPlacement[outer][1] != "" || totalPlacement[outer][1] !='P' ||  totalPlacement[outer][1] !='DQ' ||  totalPlacement[outer][1] !='NS')&& outer != inner) {
 								//console.log(currentTiers[outer]);
