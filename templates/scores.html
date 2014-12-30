@@ -203,11 +203,11 @@
 					    }else if (finalPlacement[y][1]=="DQ") {
 						placeValue = max +2;
 					    }else if(finalPlacement[y][2] == 2){
-						placeValue = one.length+1;
+						placeValue = y+one.length+1;
 					    }else if(finalPlacement[y][2] == 3){
-						placeValue = (one.length+1)+(two.length+1)+1;
+						placeValue = y+(one.length+1)+(two.length+1)+1;
 					    }else if(finalPlacement[y][2] == 4){
-						placeValue = (one.length+1)+(two.length+1)+(three.length+1)+1;
+						placeValue = y+(one.length+1)+(two.length+1)+(three.length+1)+1;
 					    }else{
 					       placeValue = y+1; 
 					    }
