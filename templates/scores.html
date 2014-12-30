@@ -131,11 +131,11 @@
 						totalPlacement[x][1] = "P"; //edit to capitalization to make rest of code work.
 					    P.push(totalPlacement[x]);
 					teams_participating ++;
-					}else if(totalPlacement[x][1] == "NS" totalPlacement[x][1] == "ns"){
+					}else if(totalPlacement[x][1] == "NS" || totalPlacement[x][1] == "ns"){
 						totalPlacement[x][1] = "NS";
 					    NS.push(totalPlacement[x]);
 					   
-					}else if(totalPlacement[x][1] == "DQ" totalPlacement[x][1] == "ns"){
+					}else if(totalPlacement[x][1] == "DQ" || totalPlacement[x][1] == "ns"){
 						totalPlacement[x][1] = "DQ";
 					    DQ.push(totalPlacement[x]);
 					    teams_participating ++;
