@@ -552,9 +552,9 @@ class display{
         style="float:left; width:400px; margin-left: 30px;"><tr><th>'.$division.' Division Events</th></tr>';
         foreach( $events as $event){
 	    if($event['confirmed']){
-		echo '<tr><td style="background-color:#B8BEFF">'.$event['division'].' '.$event['eventName'].'<a href='.$link.$event['id'].'>Rank Order</a><a href='.$link2.$event['id'].'>Team Order</a></td></tr>';
+		echo '<tr><td style="background-color:#B8BEFF">'.$event['division'].' '.$event['eventName'].'</td><td style="background-color:#B8BEFF"> <a href='.$link.$event['id'].'>Rank Order</a> </td><td style="background-color:#B8BEFF"><a href='.$link2.$event['id'].'>Team Order</a></td></tr>';
 	    }else{
-		echo '<tr><td>'.$event['division'].' '.$event['eventName'].'<a href='.$link.$event['id'].'>Rank Order</a><a href='.$link2.$event['id'].'>Team Order</a></td></tr>';
+		echo '<tr><td>'.$event['division'].' '.$event['eventName'].'</td><td><a href='.$link.$event['id'].'>Rank Order</a> </td><td> <a href='.$link2.$event['id'].'>Team Order</a></td></tr>';
 	    }
         }
         }
