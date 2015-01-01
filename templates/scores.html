@@ -517,12 +517,12 @@
 				newScore = $(this).val();
 				checkConnection();
 				var allowed=["p","P","ns","NS","DQ","dq"];
-				if (typeof(newScore) =="number") {
+				//if (typeof(newScore) =="number") {
 					update_scores(newScore);
 					saveScores();
-				}else{
-					alert("Input must be a number!");
-				}
+				//}else{
+				///	alert("Input must be a number!");
+				//}
 				
 			 });
 			  $(document).on("change",'.tiers', function() {
