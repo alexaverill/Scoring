@@ -554,7 +554,7 @@
 				    <td id="{{loop.index}}tieb">{{score.placeInTie}}</td>
 				    <td id="place">{{score.place}}</td>
 				    {%if score.confirmedScore !=0 %}
-					{% set scoreOut = score.confimedScore%}
+					{% set scoreOut = score.confirmedScore%}
 					{%else%}
 					{% set scoreOut = score.score%}
 					{%endif%}
