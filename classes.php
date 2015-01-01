@@ -549,7 +549,7 @@ class display{
              $link = 'counsler.php?event=';
 	     $link2 = 'counslerTO.php?event=';
 	      echo '<table class="table table-striped table-bordered table-condensed table-hover"
-        style="float:left; width:400px; margin-left: 30px;"><tr><th>'.$division.' Division Events</th></tr>';
+        style="float:left; width:400px; margin-left: 30px;"><tr><th cellspan="3">'.$division.' Division Events</th></tr>';
         foreach( $events as $event){
 	    if($event['confirmed']){
 		echo '<tr><td style="background-color:#B8BEFF">'.$event['division'].' '.$event['eventName'].'</td><td style="background-color:#B8BEFF"> <a href='.$link.$event['id'].'>Rank Order</a> </td><td style="background-color:#B8BEFF"><a href='.$link2.$event['id'].'>Team Order</a></td></tr>';
