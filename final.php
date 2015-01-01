@@ -73,10 +73,7 @@ global $dbh;
               if (scores[0][2]!=0) {
                      check_ties();
                      writePlaces();
-              }else{
-		check_ties();
-                     writePlaces();
-	      }
+              }
               
        }
        function writePlaces() {
