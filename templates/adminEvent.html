@@ -58,10 +58,12 @@
 		<td><div style="display:inline" class="edit_div" id="{{event.eventName}}">{{event.division}}</div></td>
 		<td>
 		{%if event.type == 'event'%}
-			Official Event
+			{% set text=Official Event%}
 		{%else%}
-			Trial Event
+			{% set text=Trial Event%}
 		{%endif%}
+		   <div style="display:inline" class="edit_type" id="{{event.eventName}}">{{text}}</div>	
+		
 		</td>
 		<td>
 		{%if event.scoreMethod == 'high'%}
