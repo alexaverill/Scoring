@@ -553,10 +553,10 @@
 				    <td>{{score.tier}}</td>
 				    <td id="{{loop.index}}tieb">{{score.placeInTie}}</td>
 				    <td id="place">{{score.place}}</td>
-				    {%if score.confimedScore == 0%}
-					{% set scoreOut = score.score%}
-					{%else%}
+				    {%if score.confirmedScore !=0 %}
 					{% set scoreOut = score.confimedScore%}
+					{%else%}
+					{% set scoreOut = score.score%}
 					{%endif%}
 				    <td><input type="text" name="{{loop.index}}" class="score" id="{{loop.index}}score" value="{{scoreOut}}" size="10"/></td>
 				    <td><select name="1" class="tiers" tabindex="-1" id="{{loop.index}}tier">';
