@@ -3,7 +3,7 @@ class scores {
     public function return_scores($event,$type){
 	global $dbh;
 	if($type == 1){
-	    $sql = "SELECT * FROM scores WHERE eventName=? ORDER BY `place` DESC";
+	    $sql = "SELECT * FROM scores WHERE eventName=? ORDER BY `place` ASC";
 	}else{
 	$sql = "SELECT * FROM scores WHERE eventName=?";
 	}
