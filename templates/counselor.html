@@ -150,16 +150,21 @@
                                 var DQ = [];
                                 var P =[];
 				teams_participating = 0;
+				check_all_ties();
 				for (x=0; x<max; x++) {
 				    if (totalPlacement[x][1] != 0 && totalPlacement[x][1] != "") {
 					//update number of teams participating
-				
-					if (totalPlacement[x][1] == "P" ) {
-					    P.push(totalPlacement[x]);
 					
-					}else if(totalPlacement[x][1] == "NS"){
-					    NS.push(totalPlacement[x]);    
-					}else if(totalPlacement[x][1] == "DQ"){
+					if (totalPlacement[x][1] == "P" || totalPlacement[x][1] == "p" ) {
+						totalPlacement[x][1] = "P"; //edit to capitalization to make rest of code work.
+					    P.push(totalPlacement[x]);
+					teams_participating ++;
+					}else if(totalPlacement[x][1] == "NS" || totalPlacement[x][1] == "ns"){
+						totalPlacement[x][1] = "NS";
+					    NS.push(totalPlacement[x]);
+					   
+					}else if(totalPlacement[x][1] == "DQ" || totalPlacement[x][1] == "dq"){
+						totalPlacement[x][1] = "DQ";
 					    DQ.push(totalPlacement[x]);
 					    teams_participating ++;
 					}else if (totalPlacement[x][2]==1) {
@@ -187,6 +192,7 @@
 				    }
 					
 				}
+				
 				//sort based on teirs
 				one.sort(compareScores);
 				two.sort(compareScores);
@@ -220,14 +226,25 @@
 					//check ties, if there is a tie skip and put in the ti
 					rowLocal = finalPlacement[y][0];
 					//tie = check_tie(x);
-					tie = check_all_ties(finalPlacement[y][1],finalPlacement[y][2]);
+					//tie = check_all_ties(finalPlacement[y][1],finalPlacement[y][2]);
 					if (teamsToRank == 0) {
 					    if (finalPlacement[y][1] == "P") {
 						placeValue = teams_participating+1; //have to increment to keep it correct
 					    }else if (finalPlacement[y][1] == "NS") {
-						placeValue = teams_participating +2; // have to have it be one more then P
+						if (teamsToRank == 0) {
+							placeValue = max + 1; // have to have it be one more then P
+						}else{
+							placeValue = teamsToRank + 1;
+						}
+						
 					    }else if (finalPlacement[y][1]=="DQ") {
 						placeValue = max +2;
+					    }else if(finalPlacement[y][2] == 2){
+						placeValue = y+one.length+1;
+					    }else if(finalPlacement[y][2] == 3){
+						placeValue = y+1;
+					    }else if(finalPlacement[y][2] == 4){
+						placeValue = y+1;
 					    }else{
 					       placeValue = y+1; 
 					    }
@@ -247,20 +264,27 @@
 					       
 					    }
 					}
+
 					placeLocat = rowLocal+"place";
-					
-					if (!tie) {
+					//console.log(tie);
+					if (finalPlacement[y][3] == 0) {
+						//console.log(finalPlacement[y][1]);
 						tieDialoglocat = rowLocal +"tie";
 						name = document.getElementById(finalPlacement[y][0]).innerHTML;
 						//console.log(name);
 						document.getElementById(tieDialoglocat).innerHTML = "";
 						document.getElementById(placeLocat).innerHTML = placeValue;
-						save_score_to_cell(finalPlacement[y][1],name,placeValue,finalPlacement[y][2])
+						placeInTie = finalPlacement[y][4];
+						row = 'R'+rowLocal;
+						document.getElementById(row).className = 'normal';
+						save_score_to_cell(finalPlacement[y][1],name,placeInTie,placeValue,finalPlacement[y][2]);
 					}else{
+					    //in tie and not tie broken
+					    
 						tieDialoglocat = rowLocal +"tie";
-						 if (finalPlacement[y][4] == 0 ) {
-						    htmlString ='Place in Tie:<select name="'+rowLocal+'" id="'+rowLocal+'tieselect"class=ties><option><option>';
-						    innerValue = document.getElementById(tieDialoglocat).innerHTML;
+						row = 'R'+rowLocal;
+						 if (finalPlacement[y][4] == 0 && finalPlacement[y][3]==1) {
+						    htmlString ='Place in Tie:<select name="'+rowLocal+'" id="'+rowLocal+'tieselect"class=ties><option></option>';
 						    for(v=1;v<=max;v++){
 							if (finalPlacement[y][4] == v) {
 							    htmlString +='<option value="'+v+'" selected=selected>'+v+'</option>';
@@ -271,7 +295,12 @@
 						    htmlString += '</select>'
 						    document.getElementById(tieDialoglocat).innerHTML =htmlString;
 						    document.getElementById(placeLocat).innerHTML = "tie";
+						    name = document.getElementById(finalPlacement[y][0]).innerHTML;
+						    document.getElementById(row).className = 'red';
+ 						    save_score_to_cell(finalPlacement[y][1],name,0,0,finalPlacement[y][2]);
+						    
 						}else{
+						    //Tie and tie broken.
 						    htmlString ='Place in Tie:<select name="'+rowLocal+'" id="'+rowLocal+'tieselect"class=ties><option><option>';
 						    for(v=1;v<=max;v++){
 							if (finalPlacement[y][4] == v) {
@@ -283,6 +312,7 @@
 						    htmlString += '</select>'
 						    document.getElementById(tieDialoglocat).innerHTML =htmlString;
 						    //document.getElementById(tieDialoglocat).innerHTML = finalPlacement[y][4];
+						    
 						    tieScore = finalPlacement[y][1];
 						    tiePlace = 0;
 						    for (u=0; u<finalPlacement.length;u++) {
@@ -291,6 +321,7 @@
 							    break;
 							}
 						    }
+						    //placeValue=parseInt(tiePlace) + parseInt(finalPlacement[y][4])
 						    updateTiePlace = parseInt(tiePlace) + parseInt(finalPlacement[y][4]);
 						    if (teamsToRank !=0) {
 							if (updateTiePlace < teamsToRank ) {
@@ -302,70 +333,75 @@
 							finalTiePlace = updateTiePlace;
 						    }
 						    document.getElementById(placeLocat).innerHTML = finalTiePlace;
-						    
+						    name = document.getElementById(finalPlacement[y][0]).innerHTML;
+						    document.getElementById(row).className = 'blue';
+						    placeInTie = finalPlacement[y][4];
+						    save_score_to_cell(finalPlacement[y][1],name,placeInTie,placeValue,finalPlacement[y][2]);
 						}
-						
-						/*saveIndex = y;
-						score = finalPlacement[y][1];
-						moveIn = y;
-						tempArray = [];
-						move = true;
-						while (move) {
-						    if (finalPlacment[moveIn][3]==1 && score == finalPlacement[moveIn][1]) {
-							tempArray.push(finalPlacement[moveIn]);
-						    }else{
-							break; //we have left the score chunk
-						    }
-						    moveIn ++;
-						}
-						//now that we have a temp array lets sort it, and then readd it into the original
-						tempArray.sort(compareTies);
-						//length to cut out then readd
-						cutArea = moveIn - saveIndex;
-						totalPlacement.splice(saveIndex,cutArea,tempArray)
-						*/
-						//totalPlacement[rowLocal-1][3] = 1;
-						
-						
-						
+
 					}
 					
 					
 				}
+				saveScores();
 			
 			}
-				function check_all_ties(value,tier){
+				function check_all_ties(){
 					currentScores = [];
 					currentTiers = [];
 					
 					//add scores to current List;
-					for(x=1; x<=max;x++){
-						scorelocation = x+"score";
-						tierlocal = x+"tier";
-						theScore = document.getElementById(scorelocation).value;
-						theTier = document.getElementById(tierlocal).value;
-						currentScores.push(theScore);
-						currentTiers.push(theTier);
-					}
-					//console.log(currentScores);
-					firstIndex = currentScores.indexOf(value);
+					/*firstIndex = currentScores.indexOf(value);
 					lastIndex = currentScores.lastIndexOf(value);
 					if (value == 0 || value == 'P' || value == 'DQ' || value == 'NS' ) {
 						return false;
-					}else if ( firstIndex == lastIndex ) {
-						//tie
-						//return true
-						return false;
-						
-					}else if(currentTiers[firstIndex] == currentTiers[lastIndex]){
-						//make sure scores are in the same tier, otherwise it wont be a tie.
-						totalPlacement[firstIndex][3] = 1;
-						totalPlacement[lastIndex][3]=1;
-						return true;
-					}else{
+					}
+					if ( firstIndex == lastIndex ) {
+						//if it is the same value it cannot be a tie
 						return false;
 					}
-					return false;
+					if (currentTiers[firstIndex] == currentTiers[lastIndex]) {
+						if(currentScores[firstIndex] == currentScores[lastIndex]){
+							totalPlacement[firstIndex][3] = 1;
+							totalPlacement[lastIndex][3]=1;
+							return true;
+						}
+					}*/
+					outer=0;
+					returnVal = false;
+					while(outer<totalPlacement.length){
+						inner = 1;
+						if ((totalPlacement[outer][1] == ""
+						     || totalPlacement[outer][1] =='P'
+						     ||totalPlacement[outer][1] =='p'
+						     ||  totalPlacement[outer][1] =='DQ'
+						     || totalPlacement[outer][1] =='dq'
+						     ||  totalPlacement[outer][1] =='NS'
+						     ||totalPlacement[outer][1] =='ns')) {
+								totalPlacement[outer][3]=0;
+						}else{
+							while(inner<totalPlacement.length){
+								if (totalPlacement[outer][2] == totalPlacement[inner][2]) {
+							   
+								//the scores are the same which means we could have a tie
+									if ((totalPlacement[outer][1] == totalPlacement[inner][1]) && outer != inner) {
+									       //console.log(currentTiers[outer]);
+									       //console.log(currentTiers[inner]);
+									   // the tiers are the same so we have a tie
+									   totalPlacement[outer][3]=1;
+									   totalPlacement[inner][3]=1; //needed to catch ties of only two
+									   //returnVal = true;
+								       }
+								}else{
+									//totalPlacement[outer][3] = 0;
+									//totalPlacement[outer][4] =0;
+								}
+							    inner++;
+							}
+						}
+					    outer++;
+					}
+					return returnVal;
 				}
 			function updateTie(locationchange,placeInTie){
 				//get scoere

@@ -135,7 +135,7 @@
 						totalPlacement[x][1] = "NS";
 					    NS.push(totalPlacement[x]);
 					   
-					}else if(totalPlacement[x][1] == "DQ" || totalPlacement[x][1] == "ns"){
+					}else if(totalPlacement[x][1] == "DQ" || totalPlacement[x][1] == "dq"){
 						totalPlacement[x][1] = "DQ";
 					    DQ.push(totalPlacement[x]);
 					    teams_participating ++;
@@ -343,7 +343,13 @@
 					returnVal = false;
 					while(outer<totalPlacement.length){
 						inner = 1;
-						if ((totalPlacement[outer][1] == "" || totalPlacement[outer][1] =='P' ||  totalPlacement[outer][1] =='DQ' ||  totalPlacement[outer][1] =='NS')) {
+						if ((totalPlacement[outer][1] == ""
+						     || totalPlacement[outer][1] =='P'
+						     ||totalPlacement[outer][1] =='p'
+						     ||  totalPlacement[outer][1] =='DQ'
+						     || totalPlacement[outer][1] =='dq'
+						     ||  totalPlacement[outer][1] =='NS'
+						     ||totalPlacement[outer][1] =='ns')) {
 								totalPlacement[outer][3]=0;
 						}else{
 							while(inner<totalPlacement.length){
