@@ -45,5 +45,10 @@ $(function() {
      data   : " {'event':'Official Event','trial':'Trial Event'}",
      type   : 'select',
      submit : 'OK'
- });     
+ });
+  $('.edit_method').editable('bridges/update_method.php', {
+     data   : " {'high':'High to Low','low':'Low to High'}",
+     type   : 'select',
+     submit : 'OK'
+ });    
 });});

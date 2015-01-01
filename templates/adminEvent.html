@@ -67,10 +67,11 @@
 		</td>
 		<td>
 		{%if event.scoreMethod == 'high'%}
-			High to Low
+			{%set type="High to Low"%}
 		{%else%}
-			Low to High
+			{%et type="Low to High"%}
 		{%endif%}
+		 <div style="display:inline" class="edit_method" id="{{event.eventName}}">{{type}}</div>
 		</td>
 		<td>
 		{%if event.completed == 1%}
