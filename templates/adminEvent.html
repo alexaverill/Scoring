@@ -58,9 +58,9 @@
 		<td><div style="display:inline" class="edit_div" id="{{event.eventName}}">{{event.division}}</div></td>
 		<td>
 		{%if event.type == 'event'%}
-			{% set text=Official Event%}
+			{% set text="Official Event"%}
 		{%else%}
-			{% set text=Trial Event%}
+			{% set text="Trial Event"%}
 		{%endif%}
 		   <div style="display:inline" class="edit_type" id="{{event.eventName}}">{{text}}</div>	
 		
