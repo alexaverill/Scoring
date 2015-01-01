@@ -1,8 +1,12 @@
 <?php
 class scores {
-    public function return_scores($event){
+    public function return_scores($event,$type){
 	global $dbh;
+	if($type == 1){
+	    $sql = "SELECT * FROM scores WHERE eventName=? ORDER BY `place` DESC";
+	}else{
 	$sql = "SELECT * FROM scores WHERE eventName=?";
+	}
 	$scores = $dbh->prepare($sql);
 	$scores->execute(array($event));
 	$scores = $scores->fetchAll();

@@ -33,7 +33,7 @@ if($rankType=='high'){
 }
 $teamsToRank = $settings->teamsToRank($division);
 $scores = new scores;
-$scoreData = $scores->return_scores($eventName);
+$scoreData = $scores->return_scores($eventName,1);
 //var_dump($scoreData);
 echo $twig->render('counselor.html',array('ScoreData'=>$scoreData,'SortMethod'=>$numRankType,'NumberTeams'=>$numTeams,'EventName'=>$eventName,'TeamsToRank'=>$teamsToRank))
 ?>
