@@ -517,7 +517,7 @@
 				newScore = $(this).val();
 				checkConnection();
 				var allowed=["p","P","ns","NS","DQ","dq"];
-				if (typeof(newScore) =="number" || newScore == "" || allowed.includes(newScore)) {
+				if (typeof(newScore) =="number") {
 					update_scores(newScore);
 					saveScores();
 				}else{
