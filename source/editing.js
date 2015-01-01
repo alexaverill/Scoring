@@ -41,7 +41,7 @@ $(function() {
       width : "500",
       loadtext  : 'Updating…'
   });
- $('.editable').editable('bridges/update_type.php', {
+ $('.edit_type').editable('bridges/update_type.php', {
      data   : " {'event':'Official Event','trial':'Trial Event'}",
      type   : 'select',
      submit : 'OK'
