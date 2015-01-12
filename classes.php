@@ -115,7 +115,7 @@ class uploads{
 	$data = new Spreadsheet_Excel_Reader();
 	$data->setOutputEncoding('CP1251');
 	$data->read($location);
-		for ($x = 2; $x <= count($data->sheets[0]["cells"]); $x++) {
+	    for ($x = 2; $x <= count($data->sheets[0]["cells"]); $x++) {
 		    $username = $data->sheets[0]["cells"][$x][1]; //a
 		    $password = $data->sheets[0]["cells"][$x][2];//b
 		    $event = $data->sheets[0]["cells"][$x][3];//c
@@ -140,9 +140,10 @@ class uploads{
 		    $add=$dbh->prepare($sql);
 		    $add->execute(array($username,$password,$perms));
 		}
-		unlink($location);
-		echo 'Your file has been input into the database. Thank you.';
-	}
+		
+	    }
+	unlink($location);
+	echo 'Your file has been input into the database. Thank you.';
 	}
     public function nametoNumber($eventName){
 	$num=0;
