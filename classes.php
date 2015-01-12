@@ -119,15 +119,16 @@ class uploads{
 		    $username = $data->sheets[0]["cells"][$x][1]; //a
 		    $password = $data->sheets[0]["cells"][$x][2];//b
 		    $event = $data->sheets[0]["cells"][$x][3];//c
-		
+		echo $username;
+		echo $event;
 			
-			$check = "SELECT * FROM users WHERE name=?"; //$name
+		$check = "SELECT * FROM users WHERE name=?"; //$name
 		$qry = $dbh->prepare($check);
 		$qry->execute(array($teamName));
 		$num_rows = $qry->rowCount();
 		$event = new events;
 		$perms = $event->getEventId($event);
-		if ($num_rows > 0) {
+		/*if ($num_rows > 0) {
 		    $addPerms = $qry->fetchAll();
 		    $addPerms[0]['permissions'];
 		    $addPerms .=','.$perms;
@@ -135,11 +136,13 @@ class uploads{
 		    $update = $dbh->prepare($sql);
 		    $update->execute(array($addPerms,$username));
 			//just add event name.
-		}else{
+		}else{*/
+		$password = password_hash($password,PASSWORD_DEFAULT);
+		echo $password;
 		    $sql = "INSERT INTO users (name,password,permissions) VALUES (?,?,?)";
 		    $add=$dbh->prepare($sql);
 		    $add->execute(array($username,$password,$perms));
-		}
+		//}
 		
 	    }
 	unlink($location);
