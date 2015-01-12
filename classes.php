@@ -125,7 +125,7 @@ class uploads{
 		$qry = $dbh->prepare($check);
 		$qry->execute(array($teamName));
 		$num_rows = $qry->rowCount();
-		$event = new $events;
+		$event = new events;
 		$perms = $event->getEventId($event);
 		if ($num_rows > 0) {
 		    $addPerms = $qry->fetchAll();
@@ -144,7 +144,17 @@ class uploads{
 		echo 'Your file has been input into the database. Thank you.';
 	}
 	}
-    
+    public function nametoNumber($eventName){
+	$num=0;
+	global $dbh;
+	$sql="SELECT * FROM events WHERE eventName=?";
+	$eventNum = $dbh->prepare($sql);
+	$eventNum->execute(array($eventName));
+	$eventName->fetchAll();
+	$eventId= $eventName[0]['id'];
+	$num = $eventId;
+	return $num;
+    }
     public function insert($location){			//Addes uploaded Excel file data to database
 	global $dbh;
 	include('source/reader.php');
