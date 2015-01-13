@@ -118,16 +118,15 @@ class uploads{
 	    for ($x = 2; $x <= count($data->sheets[0]["cells"]); $x++) {
 		    $username = $data->sheets[0]["cells"][$x][1]; //a
 		    $password = $data->sheets[0]["cells"][$x][2];//b
-		    $event = $data->sheets[0]["cells"][$x][3];//c
+		    $eventIn = $data->sheets[0]["cells"][$x][3];//c
 		//echo $username;
 		//echo $event;
-		var_dump($event);
 		$check = "SELECT * FROM users WHERE name=?"; //$name
 		$qry = $dbh->prepare($check);
 		$qry->execute(array($teamName));
 		$num_rows = $qry->rowCount();
 		$event = new events;
-		$perms = $this->nametoNumber($event);
+		$perms = $this->nametoNumber($eventIn);
 		/*if ($num_rows > 0) {
 		    $addPerms = $qry->fetchAll();
 		    $addPerms[0]['permissions'];
