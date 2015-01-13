@@ -133,14 +133,10 @@ class uploads{
 			//just add event name.
 		}else{*/
 		$password = password_hash($password,PASSWORD_DEFAULT);
-		echo $username;
-		echo $password;
-		echo $perms;
-		echo '<br/>';
 		//echo $password;
-		    $sql = "INSERT INTO users (name,password,permissions) VALUES (?,?,?)";
+		    $sql = "INSERT INTO users (name,password,type,permissions) VALUES (?,?,?,?)";
 		    $add=$dbh->prepare($sql);
-		    $add->execute(array($username,$password,$perms));
+		    $add->execute(array($username,$password,2,$perms));
 		//}
 		
 	    }
@@ -150,7 +146,7 @@ class uploads{
     public function nametoNumber($eventIn){
 	$num=0;
 	global $dbh;
-	echo $eventIn;
+	//echo $eventIn;
 	$sql="SELECT * FROM events WHERE eventName=?";
 	$eventNum = $dbh->prepare($sql);
 	$eventNum->execute(array($eventIn));
