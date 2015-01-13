@@ -151,6 +151,7 @@ class uploads{
     public function nametoNumber($eventIn){
 	$num=0;
 	global $dbh;
+	echo $eventIn;
 	$sql="SELECT * FROM events WHERE eventName=?";
 	$eventNum = $dbh->prepare($sql);
 	$eventNum->execute(array($eventIn));
