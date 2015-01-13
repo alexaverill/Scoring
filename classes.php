@@ -315,7 +315,7 @@ class events{
         $eventname = $dbh->prepare($sql);
         $eventname->execute(array($id));
         $event = $eventname->fetchAll(); 
-        return $event[0]['id'];
+        return $event['id'];
         
     }
 }
