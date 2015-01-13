@@ -136,7 +136,7 @@ class uploads{
 		//echo $password;
 		    $sql = "INSERT INTO users (name,password,type,permissions) VALUES (?,?,?,?)";
 		    $add=$dbh->prepare($sql);
-		    $add->execute(array($username,$password,2,$perms));
+		    $add->execute(array($username,$password,3,$perms));
 		//}
 		
 	    }
