@@ -154,9 +154,9 @@ class uploads{
 	$sql="SELECT * FROM events WHERE eventName=?";
 	$eventNum = $dbh->prepare($sql);
 	$eventNum->execute(array($eventIn));
-	$eventNum->fetchAll();
-	$eventId= $eventNum[0]['id'];
-	$num = $eventId;
+	$eventId= $eventNum->fetchAll();
+	$idOut = $eventId[0]['id'];
+	$num = $idOut;
 	return $num;
     }
     public function insert($location){			//Addes uploaded Excel file data to database
