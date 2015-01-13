@@ -312,11 +312,11 @@ class events{
     public function getEventId($e){
         global $dbh;
         $sql = "SELECT * FROM events WHERE eventName =?";
-        $eventname = $dbh->prepare($sql);
-        $eventname->execute(array($e));
-        $event = $eventname->fetchAll();
-	var_dump($event);
-        return $event['id'];
+        $sqlquery = $dbh->prepare($sql);
+        $sqlquery ->execute(array($e));
+        $return = $sqlquery->fetchAll();
+	var_dump($return);
+        return $return['id'];
         
     }
 }
