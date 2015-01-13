@@ -309,11 +309,11 @@ class events{
 	}
 	return $results;
     }
-    public function getEventId($event){
+    public function getEventId($e){
         global $dbh;
         $sql = "SELECT * FROM events WHERE eventName =?";
         $eventname = $dbh->prepare($sql);
-        $eventname->execute(array($event));
+        $eventname->execute(array($e));
         $event = $eventname->fetchAll();
 	var_dump($event);
         return $event['id'];
