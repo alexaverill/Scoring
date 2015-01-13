@@ -127,7 +127,7 @@ class uploads{
 		$qry->execute(array($teamName));
 		$num_rows = $qry->rowCount();
 		$event = new events;
-		$perms = $event->getEventId($event);
+		$perms = $this->nametoNumber($event);
 		/*if ($num_rows > 0) {
 		    $addPerms = $qry->fetchAll();
 		    $addPerms[0]['permissions'];
@@ -148,12 +148,12 @@ class uploads{
 	unlink($location);
 	echo 'Your file has been input into the database. Thank you.';
 	}
-    public function nametoNumber($eventName){
+    public function nametoNumber($eventIn){
 	$num=0;
 	global $dbh;
 	$sql="SELECT * FROM events WHERE eventName=?";
 	$eventNum = $dbh->prepare($sql);
-	$eventNum->execute(array($eventName));
+	$eventNum->execute(array($eventIn));
 	$eventName->fetchAll();
 	$eventId= $eventName[0]['id'];
 	$num = $eventId;
