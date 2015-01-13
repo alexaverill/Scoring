@@ -121,7 +121,7 @@ class uploads{
 		    $event = $data->sheets[0]["cells"][$x][3];//c
 		//echo $username;
 		//echo $event;
-			
+		var_dump($event);
 		$check = "SELECT * FROM users WHERE name=?"; //$name
 		$qry = $dbh->prepare($check);
 		$qry->execute(array($teamName));
