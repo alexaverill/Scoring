@@ -119,8 +119,8 @@ class uploads{
 		    $username = $data->sheets[0]["cells"][$x][1]; //a
 		    $password = $data->sheets[0]["cells"][$x][2];//b
 		    $event = $data->sheets[0]["cells"][$x][3];//c
-		echo $username;
-		echo $event;
+		//echo $username;
+		//echo $event;
 			
 		$check = "SELECT * FROM users WHERE name=?"; //$name
 		$qry = $dbh->prepare($check);
@@ -138,7 +138,7 @@ class uploads{
 			//just add event name.
 		}else{*/
 		$password = password_hash($password,PASSWORD_DEFAULT);
-		echo $password;
+		//echo $password;
 		    $sql = "INSERT INTO users (name,password,permissions) VALUES (?,?,?)";
 		    $add=$dbh->prepare($sql);
 		    $add->execute(array($username,$password,$perms));
