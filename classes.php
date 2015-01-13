@@ -155,7 +155,7 @@ class uploads{
 	$eventNum = $dbh->prepare($sql);
 	$eventNum->execute(array($eventIn));
 	$eventNum->fetchAll();
-	$eventId= $eventName[0]['id'];
+	$eventId= $eventNum[0]['id'];
 	$num = $eventId;
 	return $num;
     }
