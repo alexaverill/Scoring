@@ -486,6 +486,11 @@
 			function removeSaved() {
 			     document.getElementById('saved').innerHTML = '';
 			}
+			function checkAll(){
+				for(x=1;x<max;x++){
+					document.getElementById(x+"check").checked = true;
+				}
+			}
 			var timeoutID;
 
 			function delayedSave() {
@@ -596,7 +601,7 @@
 		{%endfor%}
 			
 		</table>
-		
+		<button onclick="checkAll()">Verify All Scores</button>
 		<button onclick="final_save()" class="btn btn-primary">Verify Scores</button>
 		    </form>
 		</div>   
