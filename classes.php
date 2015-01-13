@@ -121,10 +121,6 @@ class uploads{
 		    $eventIn = $data->sheets[0]["cells"][$x][3];//c
 		//echo $username;
 		//echo $event;
-		$check = "SELECT * FROM users WHERE name=?"; //$name
-		$qry = $dbh->prepare($check);
-		$qry->execute(array($teamName));
-		$num_rows = $qry->rowCount();
 		$event = new events;
 		$perms = $this->nametoNumber($eventIn);
 		/*if ($num_rows > 0) {
@@ -137,6 +133,10 @@ class uploads{
 			//just add event name.
 		}else{*/
 		$password = password_hash($password,PASSWORD_DEFAULT);
+		echo $username;
+		echo $password;
+		echo $perms;
+		echo '<br/>';
 		//echo $password;
 		    $sql = "INSERT INTO users (name,password,permissions) VALUES (?,?,?)";
 		    $add=$dbh->prepare($sql);
