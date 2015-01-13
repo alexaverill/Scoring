@@ -313,7 +313,7 @@ class events{
         global $dbh;
         $sql = "SELECT * FROM events WHERE eventName =?";
         $eventname = $dbh->prepare($sql);
-        $eventname->execute(array($id));
+        $eventname->execute(array($eventname));
         $event = $eventname->fetchAll();
 	var_dump($event);
         return $event['id'];
