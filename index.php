@@ -55,17 +55,17 @@ if($_SESSION['type']==3 && !in_array(999,$permissions)){
         echo '</table>';
 }
 if($_SESSION['type']==1){
-	<div>
-	   echo '<h2>Enter Scores</h2>';
+	
+	   echo '<div><h2>Enter Scores</h2>';
 $display = new display;
 $display->list_events(1,'B');
 $display->list_events(1,'C');
-</div>
-<div>
-    echo'<h2>Verify Event Scores</h2>';
+
+    echo'</div>
+<div><h2>Verify Event Scores</h2>';
     $display = new display;
     $display->list_events(2,'B');
     $display->list_events(2,'C');
-    </div>
+   echo ' </div>';
 }
 ?>
