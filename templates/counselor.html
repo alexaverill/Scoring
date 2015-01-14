@@ -44,8 +44,12 @@
 				var emptyArray =[];
 				for(x=0;x<max;x++){
 				    tie = (x+1)+"tieb";
+				    try {
+					originalTiePlace = document.getElementById(tie).innerHTML;
+				    } catch(e) {
+					originalTiePlace = 0;
+				    }
 				    
-				    originalTiePlace = document.getElementById(tie).innerHTML;
 					//create array, and populate number of rows
 					totalPlacement[x] = [3]; //create an array of three at each pount
 					
