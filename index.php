@@ -56,7 +56,9 @@ if($_SESSION['type']==3 && !in_array(999,$permissions)){
 }
 if($_SESSION['type']==1){
 	
-	   echo '<div><h2>Enter Scores</h2>';
+	   echo '<div style="
+    height: 250%;
+"><h2>Enter Scores</h2>';
 $display = new display;
 $display->list_events(1,'B');
 $display->list_events(1,'C');
