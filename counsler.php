@@ -1,7 +1,7 @@
 <?php
 include('header.php');
 //include('nav.php');
-if($_SESSION['type']!=2){
+if($_SESSION['type']!=2 ||$_SESSION['type']!=1  ){
     echo 'You do not have permission to view this page.';
     die();
 }
