@@ -59,6 +59,7 @@ Leave this set to 0 to disable.
    Suggested: {{(MaxC/2)|round(0,'ceil')}}<br/>
    Current Teams to Rank: {{TeamsRankC}}<br/>
    <select name="numberC">
+	<option value="0" selected=selected>0</option>
       <?php
       {%for i in 0..MaxC %}
          {%if i == TeamsRankC %}
